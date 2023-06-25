@@ -1,0 +1,48 @@
+.card {
+  border: none;
+  background-color: #fff;
+  border-radius: 1rem;
+  padding: 1.5rem 1.5rem;
+  position: relative;
+  overflow: hidden;
+  transition: 0.5s all;
+  box-shadow: 0 0 20px rgba(251, 213, 129, 0.2);
+}
+.card:hover {
+  box-shadow: 0 0 30px rgba(251, 213, 129, 0.5);
+}
+.card .round {
+  width: 4rem;
+  height: 4rem;
+  background-color: #FBD37A;
+  position: absolute;
+  top: -1rem;
+  right: -1rem;
+  z-index: 5;
+  border-radius: 50%;
+}
+.card img {
+  width: 23%;
+  border-radius: 50%;
+}
+.card .name {
+  margin-top: 0rem;
+}
+.card .description {
+  color: #808080;
+  width: 90%;
+  margin: 0;
+}
+
+@media screen and (max-width: 575.98px) {
+  .name {
+    font-size: 1.1rem;
+  }
+  .description {
+    font-size: 0.9rem;
+    margin-top: 0.6rem;
+  }
+  .card {
+    padding: 1rem;
+  }
+}/*# sourceMappingURL=TestimonialCard.css.map */

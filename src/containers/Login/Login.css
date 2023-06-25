@@ -1,0 +1,121 @@
+.login-form {
+  padding: 10rem 4rem 2rem 4rem;
+}
+.login-form .left {
+  flex-basis: 48%;
+}
+.login-form .left .title {
+  color: #1d1d1d;
+  width: 70%;
+  line-height: 2.3rem;
+}
+.login-form .left .title .color-text {
+  margin-left: 0.7rem;
+}
+.login-form .left .title img {
+  width: 7%;
+}
+.login-form .left img {
+  width: 90%;
+  display: block;
+  margin: auto;
+}
+.login-form .paper-plane {
+  width: 10%;
+  position: absolute;
+  left: 30%;
+  top: 10%;
+  transform: rotate(-180deg);
+}
+.login-form .right {
+  flex-basis: 48%;
+}
+.login-form .right .note {
+  padding: 1rem;
+  font-size: 1rem;
+  box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.1);
+  background-color: #ffffff;
+  border-radius: 0.5rem;
+  margin-top: 5rem;
+}
+.login-form .right .note .bold {
+  font-weight: 600;
+}
+.login-form .right .form .form-label {
+  color: #A8AEBB;
+}
+.login-form .right .form .form-group {
+  margin-bottom: 0.6rem;
+  position: relative;
+}
+.login-form .right .form .form-group .eye {
+  position: absolute;
+  bottom: 15px;
+  right: 17px;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+.login-form .right .form .form-control {
+  padding: 1.5rem 1rem;
+  background-color: #F3F4F6;
+  border-radius: 0.5rem;
+  border: none;
+}
+.login-form .right .form .row .form-group {
+  flex-basis: 48%;
+}
+.login-form .right .form .form-control-file {
+  background-color: #F3F4F6;
+  padding: 0.3rem 0.5rem;
+  border-radius: 0.3rem;
+  display: flex;
+  flex-direction: row-reverse;
+}
+.login-form .right .form .btn {
+  padding: 0.6rem 2rem;
+  margin-top: 1rem;
+  background-color: #1d1d1d;
+  color: #ffffff;
+  float: right;
+  border: 1px solid #1d1d1d;
+}
+.login-form .right .form .btn:hover {
+  background-color: transparent;
+  color: #1d1d1d;
+}
+
+@media screen and (max-width: 575.98px) {
+  .login-form {
+    padding: 6rem 1.5rem 1rem 1.5rem;
+  }
+  .login-form .paper-plane {
+    width: 15%;
+    left: 80%;
+    top: 16%;
+  }
+  .login-form .container-fluid {
+    padding: 0;
+  }
+  .login-form .container-fluid .left {
+    flex-basis: 100%;
+  }
+  .login-form .container-fluid .right {
+    flex-basis: 100%;
+  }
+  .login-form .container-fluid .right .form-label {
+    font-size: 0.9rem;
+  }
+  .login-form .container-fluid .right .form-control {
+    padding: 1.2rem 0.5rem;
+    font-size: 0.9rem;
+  }
+  .login-form .title {
+    width: 100% !important;
+    font-size: 1.3rem;
+  }
+  .login-form .title img {
+    left: -1rem;
+    top: -0.5rem;
+    width: 7% !important;
+  }
+}/*# sourceMappingURL=Login.css.map */

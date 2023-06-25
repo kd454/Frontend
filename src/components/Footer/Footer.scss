@@ -1,0 +1,61 @@
+@import '../../utils/commen.scss';
+
+.footer {
+    width: 100%;
+    padding: 1.5rem 4rem;
+    background-color: $secondary_color;
+    .content {
+        .menus {
+            gap: 1rem;
+            a {
+                color: white;
+            }
+        }
+        .links-icons {
+            gap: 0.7rem;
+            .btn {
+                width: 3rem;
+                height: 3rem;
+                background-color: $primary_color;
+                border-radius: 50%;
+                margin: 1rem 0;
+                font-size: 1.2rem;
+            }
+        }
+    }
+    .contact-detail{
+        span {
+            display: block;
+            color: white;
+            margin-bottom: 0.5rem;
+            svg {
+                color: $primary_color;
+                margin-right: 0.4rem;
+            }
+        }
+    }
+    .bottom-bar {
+        padding-top: 1.5rem;
+        border-top: 1px solid #585858;
+        span {
+            color: #A0A0A0;
+        }
+    }
+}
+@media screen and (max-width: 575.98px) {
+    .footer{
+        padding: 2rem 1.5rem;
+        .content {
+            flex-direction: column;
+        }
+        .bottom-bar{
+            flex-direction: column;
+            gap: 1rem;
+        }
+    }
+}
+@media (min-width: 768px) and (max-width: 991.98px) {
+    .footer{
+        padding: 1.5rem 2rem;
+    }
+ }

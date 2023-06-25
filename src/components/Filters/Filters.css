@@ -1,0 +1,27 @@
+@media screen and (max-width: 800px) {
+  .filter {
+    overflow-y: scroll;
+    position: fixed;
+    top: 75px;
+  }
+  .filter .heading {
+    font-size: 1.1rem;
+  }
+  .filter .modes .form-check {
+    font-size: 0.8rem;
+  }
+  .filter #ten + .form-check-label {
+    margin-right: 2rem;
+  }
+  .filter.active {
+    width: 100vw;
+    height: 100vh;
+    top: 75px;
+    position: fixed;
+    z-index: 9;
+    left: 0;
+    background-color: white;
+    padding: 1rem;
+    overflow-y: scroll;
+  }
+}/*# sourceMappingURL=Filters.css.map */

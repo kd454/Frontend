@@ -1,0 +1,207 @@
+.card-profile {
+  width: 100%;
+  padding: 1rem 1rem 1rem 0.5rem;
+  border-radius: 0.7rem;
+  background-color: white;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+.card-profile .inner {
+  width: 100%;
+  height: 100%;
+  gap: 0.6rem;
+}
+.card-profile .img-part {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex-basis: 15%;
+}
+.card-profile .img-part img {
+  border-radius: 50%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.card-profile .img-part .btn {
+  padding: 0.35rem 0.45rem;
+  font-size: 0.86rem;
+  background-color: #FBD37A;
+  margin-top: 0.7rem;
+}
+.card-profile .content {
+  width: 100%;
+  height: 100%;
+}
+.card-profile .content p {
+  margin-bottom: 0;
+}
+.card-profile .content .name {
+  font-size: 1.2rem;
+  margin-bottom: 0;
+}
+.card-profile .content .sub-title {
+  font-size: 0.9rem;
+  color: #818181;
+  width: 100%;
+}
+.card-profile .content .other-detail {
+  width: 100%;
+}
+.card-profile .content .other-detail .data .data-about {
+  color: #818181;
+  font-weight: 400;
+  font-size: 0.9rem;
+}
+.card-profile .content .other-detail .data h5 {
+  margin-bottom: 0;
+}
+.card-profile .modal .from-control {
+  width: 100%;
+  padding: 0.6rem 1rem;
+  border: 1px solid rgba(0, 0, 0, 0.2) !important;
+  margin-bottom: 0.6rem;
+}
+.card-profile .modal .submit {
+  background-color: #FBD37A;
+}
+
+@media (min-width: 450px) and (max-width: 576px) {
+  .card-profile .img-part {
+    position: absolute;
+  }
+  .card-profile .img-part img {
+    width: 4rem;
+    height: 4rem;
+  }
+  .card-profile .img-part .btn {
+    padding: 0.3rem 0.6rem;
+    font-size: 0.8rem;
+    margin-top: 0.7rem;
+  }
+  .card-profile .content .name {
+    width: 72%;
+    margin-left: auto;
+    margin-top: 1rem;
+    font-size: 1.1rem;
+  }
+  .card-profile .content .sub-title {
+    width: 72%;
+    margin-top: 0.3rem;
+    font-size: 0.8rem;
+    margin-left: auto;
+  }
+  .card-profile .content .other-detail {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start !important;
+    margin-top: 3rem;
+    gap: 0.5rem;
+  }
+  .card-profile .content .other-detail .data {
+    flex-basis: 31%;
+  }
+}
+@media (min-width: 768px) and (max-width: 991.98px) {
+  .card-profile .img-part {
+    flex-basis: 24%;
+  }
+  .card-profile .content .name {
+    font-size: 1.1rem;
+  }
+  .card-profile .content .sub-title {
+    font-size: 0.8rem;
+  }
+  .card-profile .content .other-detail .data .data-about {
+    font-size: 0.9rem;
+  }
+  .card-profile .content .other-detail .data .value {
+    font-size: 0.85rem;
+  }
+}
+@media screen and (max-width: 450px) {
+  .card-profile {
+    padding: 1rem;
+  }
+  .card-profile .img-part {
+    position: absolute;
+  }
+  .card-profile .img-part img {
+    width: 4rem;
+    height: 4rem;
+  }
+  .card-profile .img-part .btn {
+    padding: 0.3rem 0.6rem;
+    font-size: 0.8rem;
+    margin-top: 0.7rem;
+  }
+  .card-profile .content .name {
+    width: 69%;
+    margin-left: auto;
+    font-size: 1.1rem;
+  }
+  .card-profile .content .sub-title {
+    width: 69%;
+    height: 3.5rem;
+    margin-top: 0.3rem;
+    font-size: 0.8rem;
+    margin-left: auto;
+  }
+  .card-profile .content .other-detail {
+    position: relative;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start !important;
+    margin-top: 2rem !important;
+    gap: 0.6rem;
+  }
+  .card-profile .content .other-detail .data {
+    flex-basis: 31%;
+  }
+  .card-profile .content .other-detail .data-about {
+    font-size: 0.8rem !important;
+  }
+  .card-profile .content .other-detail p {
+    font-size: 0.8rem !important;
+  }
+}
+@media screen and (max-width: 380px) {
+  .card-profile {
+    padding: 1rem;
+  }
+  .card-profile .img-part {
+    position: absolute;
+  }
+  .card-profile .img-part img {
+    width: 3.5rem;
+    height: 3.5rem;
+  }
+  .card-profile .img-part .btn {
+    padding: 0.2rem 0.5rem;
+    font-size: 0.7rem;
+    margin-top: 0.7rem;
+  }
+  .card-profile .content .name {
+    width: 69%;
+    margin-left: auto;
+    font-size: 1rem;
+  }
+  .card-profile .content .sub-title {
+    width: 69%;
+    margin-top: 0.3rem;
+    font-size: 0.7rem;
+    margin-left: auto;
+  }
+  .card-profile .content .other-detail {
+    margin-top: 1.7rem !important;
+    gap: 0.6rem;
+  }
+  .card-profile .content .other-detail .data {
+    flex-basis: 31%;
+  }
+  .card-profile .content .other-detail .data-about {
+    font-size: 0.8rem !important;
+  }
+  .card-profile .content .other-detail p {
+    font-size: 0.8rem !important;
+  }
+}/*# sourceMappingURL=Card.css.map */

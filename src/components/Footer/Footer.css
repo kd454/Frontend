@@ -1,0 +1,56 @@
+.footer {
+  width: 100%;
+  padding: 1.5rem 4rem;
+  background-color: #1d1d1d;
+}
+.footer .content .menus {
+  gap: 1rem;
+}
+.footer .content .menus a {
+  color: white;
+}
+.footer .content .links-icons {
+  gap: 0.7rem;
+}
+.footer .content .links-icons .btn {
+  width: 3rem;
+  height: 3rem;
+  background-color: #FBD37A;
+  border-radius: 50%;
+  margin: 1rem 0;
+  font-size: 1.2rem;
+}
+.footer .contact-detail span {
+  display: block;
+  color: white;
+  margin-bottom: 0.5rem;
+}
+.footer .contact-detail span svg {
+  color: #FBD37A;
+  margin-right: 0.4rem;
+}
+.footer .bottom-bar {
+  padding-top: 1.5rem;
+  border-top: 1px solid #585858;
+}
+.footer .bottom-bar span {
+  color: #A0A0A0;
+}
+
+@media screen and (max-width: 575.98px) {
+  .footer {
+    padding: 2rem 1.5rem;
+  }
+  .footer .content {
+    flex-direction: column;
+  }
+  .footer .bottom-bar {
+    flex-direction: column;
+    gap: 1rem;
+  }
+}
+@media (min-width: 768px) and (max-width: 991.98px) {
+  .footer {
+    padding: 1.5rem 2rem;
+  }
+}/*# sourceMappingURL=Footer.css.map */

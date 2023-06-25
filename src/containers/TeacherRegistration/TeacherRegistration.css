@@ -1,0 +1,181 @@
+.register-form {
+  padding: 10rem 4rem 2rem 4rem;
+}
+.register-form .left {
+  flex-basis: 48%;
+}
+.register-form .left .title {
+  color: #1d1d1d;
+  width: 70%;
+  line-height: 2.3rem;
+}
+.register-form .left .title .color-text {
+  margin-left: 0.7rem;
+}
+.register-form .left .title img {
+  width: 7%;
+}
+.register-form .left img {
+  width: 90%;
+  display: block;
+  margin: auto;
+}
+.register-form .paper-plane {
+  width: 10%;
+  position: absolute;
+  left: 30%;
+  top: 10%;
+  transform: rotate(-180deg);
+}
+.register-form .right {
+  flex-basis: 48%;
+}
+.register-form .right .form .form-label {
+  color: #A8AEBB;
+  font-size: 0.8rem;
+}
+.register-form .right .form .form-group {
+  margin-bottom: 0.6rem;
+  position: relative;
+}
+.register-form .right .form .form-group .eye {
+  position: absolute;
+  bottom: 12px;
+  right: 17px;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+.register-form .right .form .form-control {
+  width: 100%;
+  padding: 1.3rem 1rem;
+  position: relative;
+  background-color: #F3F4F6;
+  border-radius: 0.5rem;
+  border: none;
+  font-size: 0.9rem;
+  margin: 0 !important;
+  border: 1px solid rgb(255, 255, 255);
+}
+.register-form .right .form .form-control:focus {
+  box-shadow: none;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+}
+.register-form .right .form .form-control .inner-place {
+  position: relative;
+  display: block;
+  width: 140px;
+  white-space: nowrap;
+  overflow: hidden !important;
+  text-overflow: ellipsis;
+}
+.register-form .right .form .row .form-group {
+  flex-basis: 48%;
+}
+.register-form .right .form .form-control-file {
+  background-color: #F3F4F6;
+  padding: 0.3rem 0.5rem;
+  border-radius: 0.3rem;
+  display: flex;
+  flex-direction: row-reverse;
+}
+.register-form .right .form input[type=file] {
+  display: none;
+}
+.register-form .right .form .file-input {
+  padding-right: 0.3rem;
+}
+.register-form .right .form .file-input .btn {
+  padding: 0rem 1rem;
+  height: 2rem;
+  background-color: #D9D9D9;
+  color: #7B7B7B;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9rem;
+}
+.register-form .right .form .custom-select {
+  height: 2.5rem;
+  background-color: #F3F4F6;
+  font-size: 0.9rem;
+  border: 1px solid rgb(255, 255, 255);
+}
+.register-form .right .form .custom-select:focus {
+  box-shadow: none;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+}
+.register-form .right .submit {
+  margin-left: auto;
+  padding: 0.6rem 1.4rem;
+  background-color: #1d1d1d;
+  color: #ffffff;
+  float: right;
+  border: 1px solid #1d1d1d;
+}
+.register-form .right .submit:hover {
+  background-color: transparent;
+  color: #1d1d1d;
+}
+
+@media screen and (max-width: 575.98px) {
+  .register-form {
+    padding: 6rem 1.5rem 1rem 1.5rem;
+  }
+  .register-form .paper-plane {
+    width: 15%;
+    left: 80%;
+    top: 16%;
+  }
+  .register-form .container-fluid {
+    padding: 0;
+  }
+  .register-form .container-fluid .left {
+    flex-basis: 100%;
+  }
+  .register-form .container-fluid .right {
+    flex-basis: 100%;
+  }
+  .register-form .container-fluid .right .form-group {
+    flex-basis: 100% !important;
+  }
+  .register-form .container-fluid .right .form-label {
+    font-size: 0.9rem;
+  }
+  .register-form .container-fluid .right .form-control {
+    padding: 1.4rem 0.5rem;
+    font-size: 0.9rem;
+  }
+  .register-form .container-fluid .right .custom-select {
+    height: 2.5rem;
+  }
+  .register-form .container-fluid .right .col-12 {
+    flex-basis: 100% !important;
+  }
+  .register-form .container-fluid .right .file-input .btn {
+    height: 1.5rem;
+  }
+  .register-form .title {
+    width: 100% !important;
+    font-size: 1.3rem;
+  }
+  .register-form .title img {
+    left: -1rem;
+    top: -0.5rem;
+    width: 5.5% !important;
+  }
+}
+@media (min-width: 768px) and (max-width: 991.98px) {
+  .register-form {
+    padding: 7rem 2rem 2rem 2rem;
+  }
+  .register-form .row .left, .register-form .row .right {
+    flex-basis: 100%;
+  }
+  .register-form .row .paper-plane {
+    width: 15%;
+    position: absolute;
+    left: 70%;
+    top: 8%;
+    transform: rotate(-180deg);
+  }
+}/*# sourceMappingURL=TeacherRegistration.css.map */

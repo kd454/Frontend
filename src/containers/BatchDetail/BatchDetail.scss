@@ -1,0 +1,202 @@
+@import '../../utils/commen.scss';
+
+.batch-detail {
+    padding: 8rem 4rem 2rem 4rem;
+    background-color: #F3F4F6;
+    min-height: 100vh;
+    .title {
+        color: $secondary_color;
+        .color-text {
+            margin-left: 0.4rem;
+        }
+    }
+    .table-content {
+        margin-top: 2rem;
+        background-color: white;
+        border-radius: 1rem;
+        .add-submit{
+            .btn {
+                width: 8rem;
+                background-color: $secondary_color;
+                color: $font_color_light;
+                border: 1px solid $secondary_color;
+                transition: .5s all;
+                &:hover{
+                    background-color: transparent;
+                    color: $secondary_color;
+                }
+            }
+        }
+        table {
+            border-radius: 1rem;
+            // border: none;
+            thead{
+                background-color: #F9FAFB;
+                // border-radius: 1rem;
+                th {
+                    border: 0;
+                    font-weight: 500;
+                    font-size: 0.9rem;
+                    &:first-child {
+                        border-top-left-radius: 1rem;
+                    }
+                    &:last-child {
+                        border-top-right-radius: 1rem;
+                    }
+                }
+            }
+            tr th {
+                font-weight: 400;
+                border-top: 0;
+            }
+            tr td {
+                width: 5rem;
+                color: #7D838F;
+                border-top: 0;
+                .form-control {
+                    width: 80%;
+                    font-size: 0.8rem;
+                }
+                .input-group {
+                    width: 80%;
+                }
+                .custom-select {
+                    border: 0;
+                    font-size: 0.8rem;
+                    height: 2.6rem;
+                }
+            }
+            .icons {
+                height: 100%;
+                // .edit-icon, .delete-icon {
+                //     font-size: 1.4rem;
+                //     margin-top: 0.5rem;
+                // }   
+                .delete-icon {
+                    margin-top: 0.3rem;
+                    background-color: #e01e37;
+                    padding: 0.3rem;
+                    font-size: 1.9rem;
+                    border-radius: 50%;
+                    color: $font_color_light;
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 575.98px) {
+    .batch-detail {
+        padding: 7rem 1.5rem 1.5rem 1.5rem;
+        .title{
+            font-size: 1.3rem;
+            img{
+                width: 6%;
+                left: -1.1rem;
+                top: -0.9rem;
+            }
+        }
+        .table-content {
+            background-color: transparent;
+        }
+        table {
+            thead{
+              display: none;  
+            }
+            tr{
+                background-color: white;
+                margin-bottom: 1rem;
+                border-radius: 0.4rem;
+            }
+            tbody, tr , td {
+                width: 100% !important;
+                display: block;
+                position: relative;
+                .form-control{
+                    width: 50% !important;
+                    text-align: right;
+                    margin-left: auto;
+                    text-align: left;
+                }
+                .input-group {
+                    width: 50% !important;
+                    margin-left: auto;
+                    .custom-select {
+                        width: 100%;
+                        text-align: left;
+                    }
+                }
+                &::before {
+                    content: attr(data-label);
+                    position: absolute;
+                    left: 0.7rem;
+                    top: 50%;
+                    transform: translateY(-50%);
+                    width: 50%;
+                    font-size: 15px;
+                    font-weight: 400;
+                    text-align: left;
+                    color: $secondary_color;
+                }
+            }
+            .icons {
+                width: 100%;
+                text-align: right;
+            }
+        }
+    }
+ }
+
+ @media (min-width: 768px) and (max-width: 991.98px) {
+   
+    .batch-detail {
+        padding: 6rem 2rem 2rem 2rem;
+        .title {
+            font-size: 1.4rem;
+            img {
+                width: 3.5%;
+                left: -1.2rem;
+                top: -0.7rem;
+            }
+        }
+        .table-content {
+            width: 100%;
+            overflow-x: scroll;
+            table{
+                min-width: 1200px !important;
+                background-color: #fff;
+                border-spacing:0 !important;    
+                th{
+                    font-size: 0.7rem;
+                    padding: 0.7rem 0.5rem;
+                    white-space: nowrap;
+                }
+            }
+            tr {
+                td {
+                    padding: 0.7rem 0.5rem;
+                    .input-group {
+                        width: 100%;
+                        font-size: 0.2rem;
+                    }
+                    .form-control{
+                        width: 100% !important;
+                        font-size: 0.7rem;
+                    }
+                    .custom-select {
+                        width: 100% !important;
+                        padding-right: 0rem;
+                        font-size: 0.7rem;
+                    }
+                
+                }
+                .icons {
+                    .edit-icon,.delete-icon{
+                        font-size: 1.1rem;
+                    }
+                }
+            }
+        }
+    }
+  }

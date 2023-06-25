@@ -1,0 +1,90 @@
+@import '../../utils/commen.scss';
+
+.pageNotFound{
+    width: 100%;
+    height: 100vh;
+    padding: 0rem 4rem 2rem 4rem;
+    margin: auto;
+    .left{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        z-index: 1;
+        .left-title{
+            font-size: 4rem;
+            line-height: 3.5rem;
+        }
+        .sub-title{
+            font-size: 2rem;
+        }
+        .content{
+            width: 90%;
+            font-size: 1rem;
+            color: #949494;
+        }
+        .home-btn{
+            width: 40%;
+            padding: 0.6rem 1rem;
+            background-color: $primary_color;
+        }
+    }
+    .right{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        img {
+            width: 100%;
+        }
+    }
+    .asset-design{
+        position: absolute;
+        top: 10%;
+        left: -10%;
+        height: 20rem;
+        width: 20rem;
+        transform: rotate(45deg);
+        border-radius: 30%;
+        background-color: $primary_color;
+    }
+}
+
+@media (max-width: 575.98px) { 
+    .pageNotFound{
+        padding: 6rem 1.5rem 1rem 1.5rem;
+        .row{
+            flex-direction: column-reverse;
+            gap: 3rem;
+        }
+        .left {
+            align-items: center;
+            padding: 1rem !important;
+            .content{
+                text-align: center;
+            }
+            .home-btn {
+                width: 50%;
+            }
+        }
+        .right{
+            padding: 2rem;
+        }
+        .asset-design{
+            width: 15rem;
+            height: 15rem;
+            top: 50%;
+            left: -35%;
+        }
+    }
+    
+ }
+
+ @media (min-width: 768px) and (max-width: 991.98px) { 
+    .pageNotFound{
+        padding: 0rem 2rem 0 2rem;
+        .left{
+            .home-btn{
+                width: 40%;
+            }
+        }
+    }
+  }

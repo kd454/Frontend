@@ -1,0 +1,122 @@
+@import '../../utils/commen.scss';
+
+.range-outer {
+    width: 100%;
+    position: relative;
+    margin: 1rem 0 1rem 0;
+    border-bottom: 1px solid #E1E1E1;
+    .head {
+        margin: 1rem 0;
+    }
+}
+.slider {
+    position: relative;
+    width: 100%;
+    height: 50px;
+}
+  
+  .slider__track,
+  .slider__range,
+  .slider__left-value,
+  .slider__right-value {
+    position: absolute;
+  }
+  
+  .slider__track,
+  .slider__range {
+    border-radius: 3px;
+    height: 5px;
+  }
+  
+  .slider__track {
+    background-color: #ababab;
+    width: 100%;
+    z-index: 1;
+  }
+  
+  .slider__range {
+    background-color: #FBD37A;
+    z-index: 2;
+  }
+  
+  .slider__left-value,
+  .slider__right-value {
+    color: $secondary_color;
+    font-size: 15px;
+    margin-top: 20px;
+  }
+  
+  .slider__left-value {
+    left: 0px;
+  }
+  
+  .slider__right-value {
+    right: -4px;
+  }
+  
+  /* Removing the default appearance */
+  .thumb,
+  .thumb::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    -webkit-tap-highlight-color: transparent;
+  }
+  
+  .thumb {
+    pointer-events: none;
+    position: absolute;
+    height: 0;
+    width: 100%;
+    outline: none;
+  }
+  
+  .thumb--left {
+    z-index: 3;
+  }
+  
+  .thumb--right {
+    z-index: 4;
+  }
+  
+  /* For Chrome browsers */
+  .thumb::-webkit-slider-thumb {
+    background-color: #F3F4F6;
+    border: none;
+    border-radius: 50%;
+    // box-shadow: 0 0 1px 1px #ced4da;
+    border: 1px solid #C3C3C3;
+    cursor: pointer;
+    height: 20px;
+    width: 20px;
+    margin-top: 4px;
+    pointer-events: all;
+    position: relative;
+  }
+  
+  /* For Firefox browsers */
+  .thumb::-moz-range-thumb {
+    background-color: #F3F4F6;
+    border: none;
+    border-radius: 50%;
+    // box-shadow: 0 0 1px 1px #ced4da;
+    cursor: pointer;
+    height: 18px;
+    width: 18px;
+    margin-top: 4px;
+    pointer-events: all;
+    position: relative;
+  }
+
+  @media screen and (max-width: 575.98px){ 
+      .range-outer {
+        .head{
+          font-size: 0.9rem;
+        }
+        .slider{
+          height: 40px;
+        }
+        .slider__left-value,.slider__right-value {
+          font-size: 0.7rem;
+        }
+      }
+
+  }

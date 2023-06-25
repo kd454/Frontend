@@ -1,0 +1,235 @@
+@import '../../utils/commen.scss';
+
+.card-profile{
+    width: 100%;
+    padding: 1rem 1rem 1rem 0.5rem;
+    border-radius: 0.7rem;
+    background-color: white;
+    box-shadow: 0 0 20px rgba(0,0,0,0.1);
+    .inner{
+        width: 100%;
+        height: 100%;
+        gap: 0.6rem;
+    }
+    .img-part {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        flex-basis: 15%;
+        img {
+            border-radius: 50%;
+            object-fit: cover;
+        }
+        .btn {
+            padding: 0.35rem 0.45rem;
+            font-size: 0.86rem;
+            background-color: $primary_color;
+            margin-top: 0.7rem;
+        }
+    }
+    .content{
+        width: 100%;
+        height: 100%;
+        // flex-basis: 85%;
+        p {
+            margin-bottom: 0;
+        }
+        .name {
+            font-size: 1.2rem;
+            margin-bottom: 0;
+        }
+        .sub-title {
+            font-size: 0.9rem;
+            color: #818181;
+            width: 100%;
+        }
+        .other-detail {
+            width: 100%;
+            .data {
+                .data-about {
+                    color: #818181;
+                    font-weight: 400;
+                    font-size: 0.9rem;
+                }
+                h5 {
+                    margin-bottom:0;
+                }
+            }
+        }
+    }
+    .modal {
+        .from-control{
+            width: 100%;
+            padding: 0.6rem 1rem;
+            border: 1px solid rgba(0,0,0,0.2) !important;
+            margin-bottom: 0.6rem;
+        }
+        .submit {
+            background-color: $primary_color;
+        }
+    }
+}
+
+
+
+@media (min-width: 450px) and (max-width: 576px) {
+    .card-profile {
+        .img-part {
+            position: absolute;
+            img {
+                width: 4rem;
+                height: 4rem;
+            }
+            .btn {
+                padding: 0.3rem 0.6rem;
+                font-size: 0.8rem;
+                margin-top: 0.7rem;
+            }
+        }
+        .content {
+            .name {
+                width: 72%;
+                margin-left: auto;
+                margin-top: 1rem;
+                font-size: 1.1rem;
+            }
+            .sub-title {
+                width: 72%;
+                margin-top: 0.3rem;
+                font-size: 0.8rem;
+                margin-left: auto;
+            }
+            .other-detail {
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: flex-start !important;
+                margin-top: 3rem;
+                gap: 0.5rem;
+                .data{
+                    flex-basis: 31%;
+                }
+            }
+        }
+    }
+  }
+
+
+ @media (min-width: 768px) and (max-width: 991.98px) { 
+    .card-profile {
+        .img-part {
+            flex-basis: 24%;
+        }
+        .content {
+            .name {
+                font-size: 1.1rem;
+            }
+            .sub-title {
+                font-size: 0.8rem;
+            }
+            .other-detail {
+                .data {
+                    .data-about{
+                        font-size: 0.9rem;
+                    }
+                    .value{
+                        font-size: 0.85rem;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 450px) {
+    .card-profile {
+        padding: 1rem;
+        .img-part {
+            position: absolute;
+            img {
+                width: 4rem;
+                height: 4rem;
+            }
+            .btn {
+                padding: 0.3rem 0.6rem;
+                font-size: 0.8rem;
+                margin-top: 0.7rem;
+            }
+        }
+        .content {
+            .name {
+                width: 69%;
+                margin-left: auto;
+                font-size: 1.1rem;
+            }
+            .sub-title {
+                width: 69%;
+                height: 3.5rem;
+                margin-top: 0.3rem;
+                font-size: 0.8rem;
+                margin-left: auto;
+            }
+            .other-detail {
+                position: relative;
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: flex-start !important;
+                margin-top: 2rem !important;
+                gap: 0.6rem;
+                .data{
+                    flex-basis: 31%;
+                }
+                .data-about{
+                    font-size: 0.8rem !important;
+                }
+                p{
+                    font-size: 0.8rem !important;
+                }
+            }
+        }
+    }
+ }
+
+ @media screen and (max-width: 380px) {
+    .card-profile {
+        padding: 1rem;
+        .img-part {
+            position: absolute;
+            img {
+                width: 3.5rem;
+                height: 3.5rem;
+            }
+            .btn {
+                padding: 0.2rem 0.5rem;
+                font-size: 0.7rem;
+                margin-top: 0.7rem;
+            }
+        }
+        .content {
+            .name {
+                width: 69%;
+                margin-left: auto;
+                font-size: 1rem;
+            }
+            .sub-title {
+                width: 69%;
+                margin-top: 0.3rem;
+                font-size: 0.7rem;
+                margin-left: auto;
+            }
+            .other-detail {
+                margin-top: 1.7rem !important;
+                gap: 0.6rem;
+                .data{
+                    flex-basis: 31%;
+                }
+                .data-about{
+                    font-size: 0.8rem !important;
+                }
+                p{
+                    font-size: 0.8rem !important;
+                }
+            }
+        }
+    }
+ }

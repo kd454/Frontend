@@ -1,0 +1,84 @@
+.pageNotFound {
+  width: 100%;
+  height: 100vh;
+  padding: 0rem 4rem 2rem 4rem;
+  margin: auto;
+}
+.pageNotFound .left {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  z-index: 1;
+}
+.pageNotFound .left .left-title {
+  font-size: 4rem;
+  line-height: 3.5rem;
+}
+.pageNotFound .left .sub-title {
+  font-size: 2rem;
+}
+.pageNotFound .left .content {
+  width: 90%;
+  font-size: 1rem;
+  color: #949494;
+}
+.pageNotFound .left .home-btn {
+  width: 40%;
+  padding: 0.6rem 1rem;
+  background-color: #FBD37A;
+}
+.pageNotFound .right {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.pageNotFound .right img {
+  width: 100%;
+}
+.pageNotFound .asset-design {
+  position: absolute;
+  top: 10%;
+  left: -10%;
+  height: 20rem;
+  width: 20rem;
+  transform: rotate(45deg);
+  border-radius: 30%;
+  background-color: #FBD37A;
+}
+
+@media (max-width: 575.98px) {
+  .pageNotFound {
+    padding: 6rem 1.5rem 1rem 1.5rem;
+  }
+  .pageNotFound .row {
+    flex-direction: column-reverse;
+    gap: 3rem;
+  }
+  .pageNotFound .left {
+    align-items: center;
+    padding: 1rem !important;
+  }
+  .pageNotFound .left .content {
+    text-align: center;
+  }
+  .pageNotFound .left .home-btn {
+    width: 50%;
+  }
+  .pageNotFound .right {
+    padding: 2rem;
+  }
+  .pageNotFound .asset-design {
+    width: 15rem;
+    height: 15rem;
+    top: 50%;
+    left: -35%;
+  }
+}
+@media (min-width: 768px) and (max-width: 991.98px) {
+  .pageNotFound {
+    padding: 0rem 2rem 0 2rem;
+  }
+  .pageNotFound .left .home-btn {
+    width: 40%;
+  }
+}/*# sourceMappingURL=PageNotFound.css.map */

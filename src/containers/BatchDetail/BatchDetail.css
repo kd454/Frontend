@@ -1,0 +1,183 @@
+.batch-detail {
+  padding: 8rem 4rem 2rem 4rem;
+  background-color: #F3F4F6;
+  min-height: 100vh;
+}
+.batch-detail .title {
+  color: #1d1d1d;
+}
+.batch-detail .title .color-text {
+  margin-left: 0.4rem;
+}
+.batch-detail .table-content {
+  margin-top: 2rem;
+  background-color: white;
+  border-radius: 1rem;
+}
+.batch-detail .table-content .add-submit .btn {
+  width: 8rem;
+  background-color: #1d1d1d;
+  color: #ffffff;
+  border: 1px solid #1d1d1d;
+  transition: 0.5s all;
+}
+.batch-detail .table-content .add-submit .btn:hover {
+  background-color: transparent;
+  color: #1d1d1d;
+}
+.batch-detail .table-content table {
+  border-radius: 1rem;
+}
+.batch-detail .table-content table thead {
+  background-color: #F9FAFB;
+}
+.batch-detail .table-content table thead th {
+  border: 0;
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+.batch-detail .table-content table thead th:first-child {
+  border-top-left-radius: 1rem;
+}
+.batch-detail .table-content table thead th:last-child {
+  border-top-right-radius: 1rem;
+}
+.batch-detail .table-content table tr th {
+  font-weight: 400;
+  border-top: 0;
+}
+.batch-detail .table-content table tr td {
+  width: 5rem;
+  color: #7D838F;
+  border-top: 0;
+}
+.batch-detail .table-content table tr td .form-control {
+  width: 80%;
+  font-size: 0.8rem;
+}
+.batch-detail .table-content table tr td .input-group {
+  width: 80%;
+}
+.batch-detail .table-content table tr td .custom-select {
+  border: 0;
+  font-size: 0.8rem;
+  height: 2.6rem;
+}
+.batch-detail .table-content table .icons {
+  height: 100%;
+}
+.batch-detail .table-content table .icons .delete-icon {
+  margin-top: 0.3rem;
+  background-color: #e01e37;
+  padding: 0.3rem;
+  font-size: 1.9rem;
+  border-radius: 50%;
+  color: #ffffff;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 575.98px) {
+  .batch-detail {
+    padding: 7rem 1.5rem 1.5rem 1.5rem;
+  }
+  .batch-detail .title {
+    font-size: 1.3rem;
+  }
+  .batch-detail .title img {
+    width: 6%;
+    left: -1.1rem;
+    top: -0.9rem;
+  }
+  .batch-detail .table-content {
+    background-color: transparent;
+  }
+  .batch-detail table thead {
+    display: none;
+  }
+  .batch-detail table tr {
+    background-color: white;
+    margin-bottom: 1rem;
+    border-radius: 0.4rem;
+  }
+  .batch-detail table tbody, .batch-detail table tr, .batch-detail table td {
+    width: 100% !important;
+    display: block;
+    position: relative;
+  }
+  .batch-detail table tbody .form-control, .batch-detail table tr .form-control, .batch-detail table td .form-control {
+    width: 50% !important;
+    text-align: right;
+    margin-left: auto;
+    text-align: left;
+  }
+  .batch-detail table tbody .input-group, .batch-detail table tr .input-group, .batch-detail table td .input-group {
+    width: 50% !important;
+    margin-left: auto;
+  }
+  .batch-detail table tbody .input-group .custom-select, .batch-detail table tr .input-group .custom-select, .batch-detail table td .input-group .custom-select {
+    width: 100%;
+    text-align: left;
+  }
+  .batch-detail table tbody::before, .batch-detail table tr::before, .batch-detail table td::before {
+    content: attr(data-label);
+    position: absolute;
+    left: 0.7rem;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 50%;
+    font-size: 15px;
+    font-weight: 400;
+    text-align: left;
+    color: #1d1d1d;
+  }
+  .batch-detail table .icons {
+    width: 100%;
+    text-align: right;
+  }
+}
+@media (min-width: 768px) and (max-width: 991.98px) {
+  .batch-detail {
+    padding: 6rem 2rem 2rem 2rem;
+  }
+  .batch-detail .title {
+    font-size: 1.4rem;
+  }
+  .batch-detail .title img {
+    width: 3.5%;
+    left: -1.2rem;
+    top: -0.7rem;
+  }
+  .batch-detail .table-content {
+    width: 100%;
+    overflow-x: scroll;
+  }
+  .batch-detail .table-content table {
+    min-width: 1200px !important;
+    background-color: #fff;
+    border-spacing: 0 !important;
+  }
+  .batch-detail .table-content table th {
+    font-size: 0.7rem;
+    padding: 0.7rem 0.5rem;
+    white-space: nowrap;
+  }
+  .batch-detail .table-content tr td {
+    padding: 0.7rem 0.5rem;
+  }
+  .batch-detail .table-content tr td .input-group {
+    width: 100%;
+    font-size: 0.2rem;
+  }
+  .batch-detail .table-content tr td .form-control {
+    width: 100% !important;
+    font-size: 0.7rem;
+  }
+  .batch-detail .table-content tr td .custom-select {
+    width: 100% !important;
+    padding-right: 0rem;
+    font-size: 0.7rem;
+  }
+  .batch-detail .table-content tr .icons .edit-icon, .batch-detail .table-content tr .icons .delete-icon {
+    font-size: 1.1rem;
+  }
+}/*# sourceMappingURL=BatchDetail.css.map */

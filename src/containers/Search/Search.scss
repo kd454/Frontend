@@ -1,0 +1,324 @@
+@import '../../utils/commen.scss';
+
+.all-teachers{
+    height: 100%;
+    padding: 7rem 4rem 1rem 4rem;
+   
+    .left {
+        flex-basis: 23%;
+        padding-right: 1rem;
+        position: sticky;
+        height: 100vh;
+        // overflow-y: scroll;
+        overflow-x: hidden;
+        align-self: flex-start; 
+        top: 100px;
+        left: 0;
+        &::-webkit-scrollbar {
+            width: 5px;
+            
+          }
+          
+          /* Track */
+          &::-webkit-scrollbar-track {
+            background: #f1f1f1; 
+            border-radius: 1rem;
+          }
+           
+          /* Handle */
+          &::-webkit-scrollbar-thumb {
+            background: #888; 
+            border-radius: 1rem;
+          }
+          
+          /* Handle on hover */
+          &::-webkit-scrollbar-thumb:hover {
+            background: #555; 
+            border-radius: 1rem;
+          }
+        .heading{
+            font-size: 1.1rem;
+        }
+        .search-inn{
+            position: relative;
+            .form-control{
+                margin-bottom: 0.4rem;
+                position: relative;   
+                border: 1px solid rgba(0,0,0,0.3);
+                &:focus{
+                    border: 1px solid rgba(0,0,0,0.3);
+                    box-shadow: none;
+                }
+            }
+            .class{
+               position: relative;
+               .search-icon {
+                    position: absolute;
+                    right: 0.7rem;
+                    top: 50%;
+                    transform: translateY(-50%);
+                    color: rgba(0,0,0,0.5);
+                    cursor: pointer;
+               }
+            }
+            .subject{
+                position: relative;
+                .search-icon {
+                    position: absolute;
+                    right: 0.7rem;
+                    top: 50%;
+                    color: rgba(0,0,0,0.5);
+                    transform: translateY(-50%);
+                    cursor: pointer;
+                }
+             }
+        }
+    }
+    .right{
+        flex-basis: 79%;
+        width: 80%;
+        display: flex;
+        flex-direction: column;
+        gap: 0.4rem;
+        .note-search{
+            font-size: 1.4rem;
+            font-weight: 400;
+        }
+    }
+    .filter-text{
+        width: 6.5rem;
+        height: 2.4rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.3rem;
+        background-color: $primary_color;
+        border-radius: 0.3rem;
+        font-size: 1rem;
+        cursor: pointer;
+        .filter-icon{
+            font-size: 1.3rem;
+        }
+        display: none;
+    }
+    .all-filters{
+        position: relative;
+        display: none !important;
+    }
+}
+.email-form{
+    .form-control {
+        padding: 1.4rem 1rem !important;
+        border: 1px solid rgba(0,0,0,0.3) !important;
+    }
+}
+.student-form{
+    .form-control {
+        padding: 1.4rem 1rem !important;
+        border: 1px solid rgba(0,0,0,0.3) !important;
+    }
+}
+
+@media screen and (max-width: 575.98px) {
+    .all-teachers {
+        padding: 9rem 1rem 1rem 1rem;
+        position: relative;
+        .left{
+            width: 100%;
+            height: 100vh;
+            position: fixed;
+            left: -200%;
+            top: 0;
+            background-color: white !important;
+            z-index: 1;
+            padding: 2rem;
+            transition: .5s all;
+            .search-inn {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                flex-direction: row;
+                width: 100vw;
+                position: fixed;
+                top: 75px;
+                left: 0;
+                z-index: -1;
+                padding: 1rem;
+                background-color: $font_color_light;
+                .class, .subject{
+                    flex-basis: 48%;
+                }
+                .form-control{
+                    // width: 9.3rem;
+                    // flex-basis: 50;
+                    flex-grow: 1;
+                    font-size: 0.8rem;
+                }
+                .subject {
+                    .search-icon{
+                        top: 40%;
+                        right: 1rem;
+                        font-size: 0.9rem;
+                    }
+                }
+                .class{
+                    .search-icon{
+                        top: 40%;
+                        right: 1rem;
+                        font-size: 0.9rem;
+                    }
+                }
+            }
+        }
+        .right {
+            flex-basis: 100%;
+            padding: 0 !important;
+            .filter-text {
+                display: flex;
+                position: sticky;
+                top: 5rem;
+                z-index: 11;
+                margin-left: auto;
+            }
+            .note-search{
+                font-size: 1.2rem ;
+            }
+        }
+        .all-filters{
+            width: 100%;
+            bottom: 0;
+            left: 0;
+            z-index: 11;
+            position: fixed;
+            background-color: $secondary_color;
+            color: $font_color_light;
+            display: flex !important;
+            a{
+                text-decoration: none;
+            }
+            .inn-box{
+                width: 20%;
+                padding: 0.7rem 0;
+                .icon{
+                    font-size: 1.2rem;
+                }
+                .title{
+                    font-size: 0.8rem;
+                    margin-top: 0.2rem;
+                }
+                &:last-child{
+                    position: relative;
+                    &::after{
+                        content: '';
+                        position: absolute;
+                        left: -10px;
+                        top: 50%;
+                        transform: translateY(-50%);
+                        width: 0; 
+                        height: 0; 
+                        border-top: 10px solid transparent;
+                        border-bottom: 10px solid transparent; 
+                        border-right:10px solid $primary_color; 
+                    }
+                }
+            }
+            .inn-box.active {
+                color: $primary_color;
+                .title{
+                    color: $primary_color;
+                }
+            }
+           .filter-block{
+                background-color: $primary_color;
+                color: $secondary_color !important;
+                .title{
+                    color: $secondary_color;
+                }
+           }
+        }
+    }
+}
+@media (min-width: 768px) and (max-width: 991.98px) { 
+    .all-teachers {
+        padding: 7rem 1.5rem 1.5rem 1.5rem;
+        .left{
+            width: 50%;
+            height: 100vh;
+            position: fixed;
+            left: -100%;
+            top: 100px;
+            background-color: white !important;
+            z-index: 11;
+            padding: 2rem;
+            transition: .5s all;
+        }
+        .left.active{
+            left: 0;
+        }
+        .right {
+            flex-basis: 100%;
+            width: 100%;
+            padding: 0 !important;
+            .filter-text {
+                display: flex;
+                position: sticky;
+                top: 5rem;
+                z-index: 11;
+                margin-left: auto;
+            }
+        }
+        .all-filters{
+            width: 100%;
+            bottom: 0;
+            left: 0;
+            z-index: 11;
+            position: fixed;
+            background-color: $secondary_color;
+            color: $font_color_light;
+            display: flex !important;
+            a{
+                text-decoration: none;
+            }
+            .inn-box{
+                width: 20%;
+                padding: 0.7rem 0;
+                .icon{
+                    font-size: 1.2rem;
+                }
+                .title{
+                    font-size: 0.8rem;
+                    margin-top: 0.2rem;
+                }
+                &:last-child{
+                    position: relative;
+                    &::after{
+                        content: '';
+                        position: absolute;
+                        left: -10px;
+                        top: 50%;
+                        transform: translateY(-50%);
+                        width: 0; 
+                        height: 0; 
+                        border-top: 10px solid transparent;
+                        border-bottom: 10px solid transparent; 
+                        border-right:10px solid $primary_color; 
+                    }
+                }
+            }
+            .inn-box.active {
+                color: $primary_color;
+                .title{
+                    color: $primary_color;
+                }
+            }
+           .filter-block{
+                background-color: $primary_color;
+                color: $secondary_color !important;
+                .title{
+                    color: $secondary_color;
+                }
+           }
+        }   
+    }
+    
+}
