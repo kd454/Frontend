@@ -13,7 +13,6 @@ import {
   setTeacherRegistration,
 } from "../../Redux/actions/teacherAction";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
-import { array } from "yup";
 
 const TeacherRegistration = () => {
   const stateData = useSelector((state) => state.teacherRedu);
@@ -39,6 +38,9 @@ const TeacherRegistration = () => {
     bio: "",
   });
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   useEffect(() => {
     const result = stateData?.isValidOrNot?.result;
     if (result !== undefined) {
@@ -317,7 +319,7 @@ const TeacherRegistration = () => {
                     id="bio"
                     name="bio"
                     aria-describedby="emailHelp"
-                    placeholder="Bio"
+                    placeholder="Here you can mention your teaching pattern / achievement / catchy phrase"
                     autoComplete="off"
                     maxLength="107"
                     onInput={handleInput}

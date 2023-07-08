@@ -6,12 +6,12 @@ const TestimonialCard = ({ withoutImg, content, head }) => {
   return (
     <div className="card">
       {!withoutImg && <img src={TestImg} alt="" />}
-      <h5 className="name">{head}</h5>
       {content.length <= 150 ? (
         <p className="description">{content}</p>
       ) : (
         <ReadMore>{content}</ReadMore>
       )}
+      <h5 className="name mt-3">{head}</h5>
       <div className="round"></div>
     </div>
   );

@@ -38,6 +38,7 @@ const TeacherProfile = () => {
     if (localStorage.getItem("tokenId")) {
       dispatch(getTeachersDetailById(localStorage.getItem("tokenId")));
     }
+    window.scrollTo(0, 0);
   }, []);
 
   useMemo(() => {
@@ -95,7 +96,7 @@ const TeacherProfile = () => {
         window.document.getElementById("document-file").textContent =
           e.target.files[0].name;
       }
-      const base64 = await getBase64(e.target.files[0], e.target.name);
+      // const base64 = await getBase64(e.target.files[0], e.target.name);
       // dispatch(setTeacherRegistration(formData));
     } else {
       setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -103,14 +104,14 @@ const TeacherProfile = () => {
     }
   };
 
-  async function getBase64(file, name) {
-    const reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.onload = function () {
-      const base64String = reader.result.split(",")[1];
-      setFormData({ ...formData, [name]: base64String });
-    };
-  }
+  // async function getBase64(file, name) {
+  //   const reader = new FileReader();
+  //   reader.readAsDataURL(file);
+  //   reader.onload = function () {
+  //     const base64String = reader.result.split(",")[1];
+  //     setFormData({ ...formData, [name]: base64String });
+  //   };
+  // }
 
   const handleRadios = (e) => {
     console.log(stateData.teacherDetails);

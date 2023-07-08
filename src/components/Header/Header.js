@@ -22,12 +22,21 @@ const Header = ({ backColor, page }) => {
   const [accountName, setAccountName] = useState("");
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [mobile, setMobile] = useState(false);
 
   // useEffect(() => {
   //   if (ocalStorage.getItem("tokenId")) {
   //     dispatch(getTeachersDetailById(localStorage.getItem("tokenId")));
   //   }
   // }, []);
+  useEffect(() => {
+    if (window.screen.width <= 1080) {
+      setMobile(true);
+      console.log(mobile);
+    } else {
+      console.log(mobile);
+    }
+  }, []);
 
   useEffect(() => {
     if (teacherData?.teacherDetails?.name) {
@@ -86,7 +95,7 @@ const Header = ({ backColor, page }) => {
       document.querySelector(".list").style.height = "0px";
       setActive(false);
     } else {
-      document.querySelector(".list").style.height = "250px";
+      document.querySelector(".list").style.height = "280px";
       setActive(true);
     }
   };
@@ -157,6 +166,13 @@ const Header = ({ backColor, page }) => {
                   Contact Us
                 </Link>
               </li>
+              {mobile && (
+                <li className="list-item">
+                  <RouterLink to="/teacher/register">
+                    Register as teacher
+                  </RouterLink>
+                </li>
+              )}
             </>
           )}
         </ul>

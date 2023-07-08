@@ -16,7 +16,16 @@ const initialState = {
 const teacherReducer = (state = initialState, action) => {
   switch (action.type) {
     case ActionTypes.GET_TEACHER_DETAIL:
-      return { ...state, allteachers: action.payload };
+      let newArr = [];
+      if (action.payload.length == 0) {
+        newArr = action.payload;
+        newArr.push("Data not found");
+        console.log(newArr);
+        return { ...state, allteachers: newArr };
+      } else {
+        return { ...state, allteachers: action.payload };
+      }
+
     case ActionTypes.REGISTER_DATA:
       return { ...state, teacher: action.payload };
     case ActionTypes.SET_TEACHER_REGISTRAION:

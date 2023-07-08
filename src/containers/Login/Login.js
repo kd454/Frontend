@@ -28,6 +28,10 @@ const Login = () => {
     dispatch(login(formData));
   };
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   const handleEye = (watch) => {
     const ele = document.getElementById("password");
     if (watch) {
@@ -55,7 +59,7 @@ const Login = () => {
           theme: "light",
         });
         setTimeout(() => {
-          navigate("/");
+          navigate("/teacher/profile");
         }, 2000);
       } else if (
         loginState.loginDetail &&

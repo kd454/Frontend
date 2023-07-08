@@ -42,13 +42,13 @@ const Card = ({ detail, handleShow }) => {
           </div>
           <div className="content d-flex align-items-start flex-column">
             <h6 className="name">
-              {name.replace(
-                name.substring(0, 1),
-                name.substring(0, 1).toUpperCase()
+              {name?.replace(
+                name?.substring(0, 1),
+                name?.substring(0, 1)?.toUpperCase()
               )}
             </h6>
             <p className="sub-title mt-2">{bio}</p>
-            <div className="other-detail d-flex align-items-center justify-content-between mt-auto">
+            <div className="other-detail text-center d-flex align-items-center justify-content-between mt-auto">
               <div className="data">
                 <h5 className="data-about">Distance</h5>
                 <p className="value">{distance}</p>

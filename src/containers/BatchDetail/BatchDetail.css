@@ -47,16 +47,16 @@
   border-top: 0;
 }
 .batch-detail .table-content table tr td {
-  width: 5rem;
+  width: 9rem;
   color: #7D838F;
   border-top: 0;
 }
 .batch-detail .table-content table tr td .form-control {
-  width: 80%;
+  width: 100%;
   font-size: 0.8rem;
 }
 .batch-detail .table-content table tr td .input-group {
-  width: 80%;
+  width: 100%;
 }
 .batch-detail .table-content table tr td .custom-select {
   border: 0;

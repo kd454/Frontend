@@ -100,7 +100,7 @@
     background-color: white !important;
   }
   .header.active .list {
-    height: 250px;
+    height: 290px;
   }
 }
 @media (min-width: 768px) and (max-width: 991.98px) {
@@ -146,6 +146,6 @@
     background-color: white !important;
   }
   .header.active .list {
-    height: 250px;
+    height: 290px;
   }
 }/*# sourceMappingURL=Header.css.map */

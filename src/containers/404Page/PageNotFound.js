@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./PageNotFound.css";
 import Header from "../../components/Header/Header";
 import PageNotFoundIMG from "../../assets/images/404_page.png";
 import { Link } from "react-router-dom";
 
 const PageNotFound = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <>
       <Header />

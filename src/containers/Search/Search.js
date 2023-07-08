@@ -3,7 +3,10 @@ import Card from "../../components/Card/Card";
 import Filters from "../../components/Filters/Filters";
 import Header from "../../components/Header/Header";
 import { useNavigate, useSearchParams } from "react-router-dom";
-import { getTeacherDetail } from "../../Redux/actions/teacherAction";
+import {
+  getTeacherDetail,
+  setFilterData,
+} from "../../Redux/actions/teacherAction";
 import "./Search.css";
 import { Link } from "react-router-dom";
 import { AiOutlineHome } from "react-icons/ai";
@@ -30,6 +33,7 @@ const Search = () => {
   const navigate = useNavigate();
   const stateTeachers = useSelector((state) => state.teacherRedu);
   const [allTeachersData, setAllTeachers] = useState([]);
+  const [output, setOutput] = useState([]);
   const data = useMemo(() => {
     return {
       location: searchParams.get("location"),
@@ -49,7 +53,17 @@ const Search = () => {
 
   useEffect(() => {
     setAllTeachers(stateTeachers.allteachers);
-  }, [stateTeachers?.allteachers]);
+    if (typeof stateTeachers.allteachers[0] === "string") {
+      alert(
+        `Currently we are not present in your city Kindly fill the student details, we’ll notify you once we are functional in your city`
+      );
+      setShowStudent(true);
+    } else {
+      stateTeachers.allteachers.sort(
+        (a, b) => a.distance.split("")[0] - b.distance.split("")[0]
+      );
+    }
+  }, [stateTeachers?.allteachers?.length]);
 
   useEffect(() => {
     if (stateTeachers?.filterData?.length) {
@@ -65,6 +79,8 @@ const Search = () => {
     stateTeachers?.filterObject?.fees,
     stateTeachers?.filterObject?.distance,
     stateTeachers?.filterObject?.experience,
+    stateTeachers?.filterObject?.gender,
+    stateTeachers?.filterObject?.batch_detail,
   ]);
 
   const studentState = useSelector((state) => state.studentRedu);
@@ -159,16 +175,16 @@ const Search = () => {
 
   // handling allfilter left part
   let finalFilterData = stateTeachers.allteachers;
+  // console.log(finalFilterData);
   const filterAllData = (obj) => {
-    const { fees, distance, experience } = obj;
+    console.log(finalFilterData);
+    const { fees, distance, experience, gender, batch_detail } = obj;
 
     // fees filter
     if (fees && Object.keys(fees).length !== 0) {
       finalFilterData = finalFilterData.filter((item) => {
         return item.fees >= fees[0] && item.fees <= fees[1];
       });
-    } else if (!experience && !distance) {
-      finalFilterData = stateTeachers.allteachers;
     }
 
     //experience filter
@@ -178,8 +194,6 @@ const Search = () => {
           item.experience >= experience[0] && item.experience <= experience[1]
         );
       });
-    } else if (!fees && !distance) {
-      finalFilterData = stateTeachers.allteachers;
     }
 
     //distance
@@ -188,11 +202,46 @@ const Search = () => {
         let val = parseInt(item.distance.toString().split(" ")[0]);
         return val >= distance[0] && val <= distance[1];
       });
-    } else if (!fees && !experience) {
-      finalFilterData = stateTeachers.allteachers;
     }
 
-    setAllTeachers(finalFilterData);
+    //gender filter
+    if (gender?.length !== 0) {
+      for (let i = 0; i < gender?.length; i++) {
+        finalFilterData = finalFilterData.filter((item) => {
+          return item.gender === gender[i];
+        });
+      }
+    }
+
+    if (batch_detail?.length !== 0) {
+      let dataOne = [];
+      let dataTwo = [];
+      for (let i = 0; i < batch_detail?.length; i++) {
+        if (i > 0) {
+          dataOne = finalFilterData.filter((item) => {
+            return item.batchStrength === batch_detail[i];
+          });
+          // console.log(dataOne);
+        } else {
+          dataTwo = finalFilterData.filter((item) => {
+            return item.batchStrength === batch_detail[i];
+          });
+          // console.log(dataTwo);
+        }
+        // console.log(finalFilterData);
+        // console.log(output);
+        // output = [...output, ...finalFilterData];
+      }
+      dispatch(setFilterData([...dataOne, ...dataTwo]));
+      return 0;
+    }
+
+    if (finalFilterData.length === 0) {
+      setAllTeachers([]);
+    } else {
+      setAllTeachers(finalFilterData);
+      dispatch(setFilterData(finalFilterData));
+    }
   };
 
   //model handling
@@ -320,17 +369,24 @@ const Search = () => {
               data={data}
               allTeachersData={allTeachersData}
               handleFilterBottom={handleFilterBottom}
+              finalFilterData={finalFilterData}
             />
           </div>
           <div className="right pl-5">
             <p className="note-search">
               Note: You can get upto 3 teachers details
             </p>
-            {allTeachersData.map((item, index) => {
-              return (
-                <Card key={index} detail={item} handleShow={handleShowEmail} />
-              );
-            })}
+            {typeof stateTeachers.allteachers[0] === "string"
+              ? "No data found"
+              : allTeachersData.map((item, index) => {
+                  return (
+                    <Card
+                      key={index}
+                      detail={item}
+                      handleShow={handleShowEmail}
+                    />
+                  );
+                })}
           </div>
         </div>
         <div className="all-filters d-flex flex-row align-items-center justify-content-center">
@@ -399,10 +455,15 @@ const Search = () => {
             </div>
           </Modal.Body>
           <Modal.Footer>
-            <Button variant="secondary" onClick={handleCloseEmail}>
+            <Button variant="gray" onClick={handleCloseEmail}>
               Close
             </Button>
-            <input type="submit" className="btn btn-primary" value="Submit" />
+            <input
+              type="submit"
+              className="btn"
+              value="Submit"
+              style={{ backgroundColor: "#FBD37A" }}
+            />
           </Modal.Footer>
         </form>
       </Modal>
@@ -416,7 +477,7 @@ const Search = () => {
           }}
         >
           <Modal.Header>
-            <Modal.Title>Get Teacher Details Form</Modal.Title>
+            <Modal.Title>Student Details</Modal.Title>
           </Modal.Header>
           <Modal.Body>
             <div className="form-group">
@@ -472,10 +533,15 @@ const Search = () => {
             </div>
           </Modal.Body>
           <Modal.Footer>
-            <Button variant="secondary" onClick={handleCloseStudent}>
+            <Button variant="gray" onClick={handleCloseStudent}>
               Close
             </Button>
-            <input type="submit" className="btn btn-primary" value="Submit" />
+            <input
+              type="submit"
+              className="btn"
+              value="Submit"
+              style={{ backgroundColor: "#FBD37A" }}
+            />
           </Modal.Footer>
         </form>
       </Modal>
@@ -487,10 +553,14 @@ const Search = () => {
           Your email is already registered, press ok to get teacher details.
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={handleCloseMessage}>
+          <Button vvariant="gray" onClick={handleCloseMessage}>
             Close
           </Button>
-          <Button variant="primary" onClick={handleMessage}>
+          <Button
+            variant="primary"
+            onClick={handleMessage}
+            style={{ backgroundColor: "#FBD37A" }}
+          >
             Ok
           </Button>
         </Modal.Footer>

@@ -25,7 +25,9 @@
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
     <title>BetterConnect</title>
+    
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
@@ -71,6 +73,21 @@
           $(target).show();
         });
       });
+      var expanded = false;
+
+function showCheckboxes() {
+  var checkboxes = document.getElementById("checkboxes");
+  if (!expanded) {
+    checkboxes.style.display = "block";
+    expanded = true;
+  } else {
+    checkboxes.style.display = "none";
+    expanded = false;
+  }
+}
     </script>
+    
+ 
+</script>
   </body>
 </html>

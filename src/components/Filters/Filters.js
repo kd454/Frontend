@@ -9,7 +9,7 @@ import {
   setFilterObjectRedux,
 } from "../../Redux/actions/teacherAction";
 
-const Filters = ({ classVal, handleFilterBottom }) => {
+const Filters = ({ classVal, finalFilterData }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [filterDataIn, setFilterDataIn] = useState([]);
@@ -25,6 +25,8 @@ const Filters = ({ classVal, handleFilterBottom }) => {
     fees: [],
     experience: [],
     distance: [],
+    gender: [],
+    batch_detail: [],
   });
 
   useEffect(() => {
@@ -37,7 +39,13 @@ const Filters = ({ classVal, handleFilterBottom }) => {
 
   useEffect(() => {
     dispatch(setFilterObjectRedux(filterObject));
-  }, [filterObject.fees, filterObject.experience, filterObject.distance]);
+  }, [
+    filterObject.fees,
+    filterObject.experience,
+    filterObject.distance,
+    filterObject.gender,
+    filterObject.batch_detail,
+  ]);
 
   useEffect(() => {
     dispatch(setFilterData(filterDataIn));
@@ -58,25 +66,38 @@ const Filters = ({ classVal, handleFilterBottom }) => {
   };
 
   const handleCheckItems = (e, list) => {
-    if (e.target.checked) {
-      let data = stateData.allteachers.filter((item) => {
-        if (list === "gender") {
-          return item.gender === e.target.value;
-        } else {
-          return item.batchStrength === e.target.value;
-        }
-      });
-      setFilterDataIn([...filterDataIn, ...data]);
+    if (list === "gender") {
+      if (e.target.checked) {
+        setFilterObject({
+          ...filterObject,
+          ["gender"]: [...filterObject.gender, e.target.value],
+        });
+      } else {
+        const data = filterObject.gender.filter(
+          (item) => item !== e.target.value
+        );
+        setFilterObject({
+          ...filterObject,
+          ["gender"]: data,
+        });
+      }
     } else {
-      let data = filterDataIn.filter((item) => {
-        if (list === "gender") {
-          return item.gender !== e.target.value;
-        } else {
-          return item.batchStrength !== e.target.value;
-        }
-      });
-      setFilterDataIn(data);
+      if (e.target.checked) {
+        setFilterObject({
+          ...filterObject,
+          ["batch_detail"]: [...filterObject.batch_detail, e.target.value],
+        });
+      } else {
+        const data = filterObject.batch_detail.filter(
+          (item) => item !== e.target.value
+        );
+        setFilterObject({
+          ...filterObject,
+          ["batch_detail"]: data,
+        });
+      }
     }
+    // console.log(filterObject);
   };
 
   return (
@@ -117,7 +138,7 @@ const Filters = ({ classVal, handleFilterBottom }) => {
                 onChange={(e) => handleCheckItems(e, "batch")}
               />
               <label className="form-check-label mr-5" htmlFor="less">
-                less then 10
+                less than 10
               </label>
             </div>
             <div className="form-check">

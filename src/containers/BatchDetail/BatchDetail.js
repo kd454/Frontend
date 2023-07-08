@@ -26,6 +26,11 @@ const BatchDetail = ({ formData }) => {
     }
     dispatch(setLocalBatch(innerData));
   }, []);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   let initialObject = {
     class: "",
     subject: "",
@@ -214,13 +219,14 @@ const BatchDetail = ({ formData }) => {
                         innerData={innerData}
                         initialObject={initialObject}
                         setInnerData={setInnerData}
+                        key={index}
                       />
                     );
                   }
                 )}
               <tr>
                 <td colSpan={9}>
-                  <div className="add-submit d-flex align-items-center justify-content-between mb-2">
+                  <div className="add-submit d-flex align-items-center justify-content-between ">
                     <input
                       type="submit"
                       className="btn add-row"

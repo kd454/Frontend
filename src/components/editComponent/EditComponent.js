@@ -3,12 +3,68 @@ import "./EditComponent.css";
 import { MdOutlineDelete } from "react-icons/md";
 import { useDispatch } from "react-redux";
 import { setLocalBatch } from "../../Redux/actions/teacherAction";
+import { MultiSelect } from "primereact/multiselect";
+
+//theme
+import "primereact/resources/themes/lara-light-indigo/theme.css";
+
+//core
+import "primereact/resources/primereact.min.css";
 
 const EditComponent = ({ data, id, setInnerData, initialObject }) => {
   // const [active, setActive] = useState();
+
+  const boards = [
+    { name: "CBSE", code: "cs" },
+    { name: "ICSE", code: "is" },
+    { name: "IGCSE", code: "ics" },
+  ];
+  const modes = [
+    { name: "Offline", code: "ofln" },
+    { name: "Hometutor", code: "hmttr" },
+    { name: "Online", code: "onlin" },
+  ];
+
+  const [selectedBoard, setSelectedBoard] = useState([]);
+  const [selectedModes, setSelectedModes] = useState([]);
+
+  useEffect(() => {
+    handleMultiSelect("board");
+  }, [selectedBoard.length]);
+
+  useEffect(() => {
+    handleMultiSelect("mode");
+  }, [selectedModes.length]);
+
   const [inner, setInner] = useState();
+
   useEffect(() => {
     setInner(data);
+    if (data.board) {
+      // console.log("hello");
+      let dataOut = [];
+      data.board.split(",").map((item1, index) => {
+        boards.map((item) => {
+          if (item.name === item1) {
+            dataOut.push(item);
+          }
+        });
+      });
+      setSelectedBoard(dataOut);
+    }
+    if (data.mode) {
+      // console.log("gello");
+      let dataOut = [];
+      data.mode.split(",").map((item1, index) => {
+        modes.map((item) => {
+          if (item.name === item1) {
+            dataOut.push(item);
+          }
+        });
+      });
+      // console.log(dataOut);
+      setSelectedModes(dataOut);
+    }
   }, [data]);
   const dispatch = useDispatch();
 
@@ -30,6 +86,33 @@ const EditComponent = ({ data, id, setInnerData, initialObject }) => {
     },
   ];
 
+  const handleMultiSelect = (val) => {
+    let stringVal = "";
+    if (val === "board") {
+      selectedBoard.map((item, index) => {
+        stringVal += item.name + ",";
+      });
+    } else {
+      selectedModes.map((item, index) => {
+        stringVal += item.name + ",";
+      });
+    }
+
+    let finalStr = stringVal.substring(0, stringVal.length - 1);
+
+    setInner({ ...inner, [val]: finalStr });
+    setInnerData(inner);
+    if (localStorage.getItem("batchDetail") !== null) {
+      let arr = JSON.parse(localStorage.getItem("batchDetail"));
+      let updateObj = arr.find((item, index) => {
+        return index === id;
+      });
+      let obj = updateObj;
+      obj[val] = finalStr;
+      arr[id] = obj;
+      localStorage.setItem("batchDetail", JSON.stringify(arr));
+    }
+  };
   const handleChange = (e) => {
     const { name, value } = e.target;
     setInner({ ...inner, [name]: value });
@@ -90,19 +173,18 @@ const EditComponent = ({ data, id, setInnerData, initialObject }) => {
         </td>
         <td data-label="Board">
           <div className="input-group">
-            <select
-              className="custom-select"
-              id="inputGroupSelect01"
-              name="board"
-              required
-              value={inner?.board}
-              onChange={(e) => handleChange(e)}
-            >
-              <option value="">Select</option>
-              <option value="CBSE">CBSE</option>
-              <option value="ICSE">ICSE</option>
-              <option value="IGCSE">IGCSE</option>
-            </select>
+            <MultiSelect
+              className="multi-select-drop"
+              value={selectedBoard}
+              options={boards}
+              onChange={(e) => setSelectedBoard(e.value)}
+              optionLabel="name"
+              placeholder="Select a Board"
+              maxSelectedLabels={2}
+              // defaultValue={["CBSE"]}
+              // optionValue=
+              // selectedOption={selectedBoard}
+            />
           </div>
         </td>
         <td data-label="Fees">
@@ -120,7 +202,7 @@ const EditComponent = ({ data, id, setInnerData, initialObject }) => {
         <td data-label="Scholarship">
           <div className="input-group">
             <select
-              className="custom-select"
+              className="custom-select scholarship"
               id="inputGroupSelect02"
               required
               name="scholarship"
@@ -151,7 +233,7 @@ const EditComponent = ({ data, id, setInnerData, initialObject }) => {
         <td data-label="Batch size">
           <div className="input-group">
             <select
-              className="custom-select"
+              className="custom-select size"
               id="inputGroupSelect01"
               name="batchStrength"
               required
@@ -167,19 +249,15 @@ const EditComponent = ({ data, id, setInnerData, initialObject }) => {
         </td>
         <td data-label="Mode">
           <div className="input-group">
-            <select
-              className="custom-select"
-              id="inputGroupSelect03"
-              name="mode"
-              value={inner?.mode}
-              required
-              onChange={(e) => handleChange(e)}
-            >
-              <option value="">Select</option>
-              <option value="Offline">Offline</option>
-              <option value="Hometutor">Hometutor</option>
-              <option value="Online">Online</option>
-            </select>
+            <MultiSelect
+              className="multi-select-drop"
+              value={selectedModes}
+              options={modes}
+              onChange={(e) => setSelectedModes(e.value)}
+              optionLabel="name"
+              placeholder="Select a Mode"
+              maxSelectedLabels={2}
+            />
           </div>
         </td>
 
