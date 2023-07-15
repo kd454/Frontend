@@ -213,6 +213,7 @@ const Search = () => {
       }
     }
 
+    // batch size filter
     if (batch_detail?.length !== 0) {
       let dataOne = [];
       let dataTwo = [];
@@ -373,9 +374,9 @@ const Search = () => {
             />
           </div>
           <div className="right pl-5">
-            <p className="note-search">
+            {/* <p className="note-search">
               Note: You can get upto 3 teachers details
-            </p>
+            </p> */}
             {typeof stateTeachers.allteachers[0] === "string"
               ? "No data found"
               : allTeachersData.map((item, index) => {
@@ -509,6 +510,7 @@ const Search = () => {
                 className="form-control mb-2"
                 type="text"
                 maxLength={10}
+                minLength={10}
                 placeholder="Contact"
                 required
                 name="phone"
@@ -526,7 +528,7 @@ const Search = () => {
               <input
                 className="form-control mb-2"
                 type="text"
-                placeholder="School"
+                placeholder="School (Optional)"
                 name="school"
                 onInput={handleStudentRegister}
               />
