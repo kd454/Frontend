@@ -59,9 +59,9 @@ const Search = () => {
       );
       setShowStudent(true);
     } else {
-      stateTeachers.allteachers.sort(
-        (a, b) => a.distance.split("")[0] - b.distance.split("")[0]
-      );
+      stateTeachers.allteachers.sort((a, b) => {
+        return a.distance.split(" ")[0] - b.distance.split(" ")[0];
+      });
     }
   }, [stateTeachers?.allteachers?.length]);
 
