@@ -5,6 +5,7 @@ import Header from "../../components/Header/Header";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import {
   getTeacherDetail,
+  setAllTeacherDetail,
   setFilterData,
 } from "../../Redux/actions/teacherAction";
 import "./Search.css";
@@ -17,7 +18,6 @@ import "react-toastify/dist/ReactToastify.css";
 import { BsCurrencyRupee, BsSearch } from "react-icons/bs";
 import { BiTimeFive, BiFilterAlt } from "react-icons/bi";
 import Button from "react-bootstrap/Button";
-import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
 import {
   cleanUp,
@@ -25,15 +25,16 @@ import {
   setStudentDetail,
   studentAlreadyRegistered,
 } from "../../Redux/actions/studentAction";
+import Loading from "../../components/Loading/Loading";
 
 const Search = () => {
   const [searchParams] = useSearchParams();
   const [active, setActive] = useState(false);
+  const [loading, setLoading] = useState(true);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const stateTeachers = useSelector((state) => state.teacherRedu);
   const [allTeachersData, setAllTeachers] = useState([]);
-  const [output, setOutput] = useState([]);
   const data = useMemo(() => {
     return {
       location: searchParams.get("location"),
@@ -52,27 +53,23 @@ const Search = () => {
   }, [data?.mode, data?.class, data?.subject]);
 
   useEffect(() => {
-    setAllTeachers(stateTeachers.allteachers);
+    renderLoader();
     if (typeof stateTeachers.allteachers[0] === "string") {
       alert(
         `Currently we are not present in your city Kindly fill the student details, we’ll notify you once we are functional in your city`
       );
       setShowStudent(true);
+      dispatch(setAllTeacherDetail());
     } else {
-      stateTeachers.allteachers.sort((a, b) => {
-        return a.distance.split(" ")[0] - b.distance.split(" ")[0];
-      });
+      setAllTeachers(stateTeachers.allteachers);
     }
-  }, [stateTeachers?.allteachers?.length]);
+  }, [stateTeachers?.allteachers]);
 
-  useEffect(() => {
-    if (stateTeachers?.filterData?.length) {
-      setAllTeachers(stateTeachers?.filterData);
-    } else {
-      setAllTeachers(stateTeachers?.allteachers);
+  const renderLoader = () => {
+    if (stateTeachers.allteachers?.length >= 0) {
+      setLoading(!loading);
     }
-  }, [stateTeachers?.filterData]);
-
+  };
   useEffect(() => {
     filterAllData(stateTeachers?.filterObject);
   }, [
@@ -81,6 +78,7 @@ const Search = () => {
     stateTeachers?.filterObject?.experience,
     stateTeachers?.filterObject?.gender,
     stateTeachers?.filterObject?.batch_detail,
+    stateTeachers?.filterObject?.boards,
   ]);
 
   const studentState = useSelector((state) => state.studentRedu);
@@ -174,11 +172,10 @@ const Search = () => {
   };
 
   // handling allfilter left part
-  let finalFilterData = stateTeachers.allteachers;
-  // console.log(finalFilterData);
+  let finalFilterData = stateTeachers?.allteachers;
+
   const filterAllData = (obj) => {
-    console.log(finalFilterData);
-    const { fees, distance, experience, gender, batch_detail } = obj;
+    const { fees, distance, experience, gender, batch_detail, boards } = obj;
 
     // fees filter
     if (fees && Object.keys(fees).length !== 0) {
@@ -206,39 +203,48 @@ const Search = () => {
 
     //gender filter
     if (gender?.length !== 0) {
+      let dataOne = [];
       for (let i = 0; i < gender?.length; i++) {
-        finalFilterData = finalFilterData.filter((item) => {
+        const data = finalFilterData.filter((item) => {
           return item.gender === gender[i];
         });
+        dataOne = [...dataOne, ...data];
       }
+      finalFilterData = dataOne;
+      dispatch(setFilterData([...dataOne]));
     }
 
     // batch size filter
     if (batch_detail?.length !== 0) {
       let dataOne = [];
-      let dataTwo = [];
       for (let i = 0; i < batch_detail?.length; i++) {
-        if (i > 0) {
-          dataOne = finalFilterData.filter((item) => {
-            return item.batchStrength === batch_detail[i];
-          });
-          // console.log(dataOne);
-        } else {
-          dataTwo = finalFilterData.filter((item) => {
-            return item.batchStrength === batch_detail[i];
-          });
-          // console.log(dataTwo);
-        }
-        // console.log(finalFilterData);
-        // console.log(output);
-        // output = [...output, ...finalFilterData];
+        const data = finalFilterData.filter((item) => {
+          return item.batchStrength === batch_detail[i];
+        });
+        dataOne = [...dataOne, ...data];
       }
-      dispatch(setFilterData([...dataOne, ...dataTwo]));
-      return 0;
+      finalFilterData = dataOne;
+      dispatch(setFilterData([...dataOne]));
+    }
+
+    // board filter
+    if (boards?.length !== 0) {
+      // console.log("uncheck");
+      let dataOne = [];
+      for (let i = 0; i < boards?.length; i++) {
+        // console.log(boards, i);
+        const data = finalFilterData.filter((item) => {
+          return item.board === boards[i];
+        });
+        dataOne = [...dataOne, ...data];
+      }
+      finalFilterData = dataOne;
+      dispatch(setFilterData([...dataOne]));
     }
 
     if (finalFilterData.length === 0) {
-      setAllTeachers([]);
+      setAllTeachers(finalFilterData);
+      dispatch(setFilterData(finalFilterData));
     } else {
       setAllTeachers(finalFilterData);
       dispatch(setFilterData(finalFilterData));
@@ -327,246 +333,252 @@ const Search = () => {
 
   return (
     <>
-      <ToastContainer />
-      <Header backColor="#FFFFFF" page="search" />
-      <section className="all-teachers">
-        <div className="d-flex justify-content-between">
-          <div className="left">
-            <h3 className="heading">Search</h3>
-            <div className="search-inn mb-3">
-              <div className="class">
-                <input
-                  type="text"
-                  className="form-control mb-2"
-                  placeholder="Class"
-                  name="classVal"
-                  id="classVal"
-                  value={filterObject?.classVal}
-                  onChange={handleClaasSubject}
-                />
-                <BsSearch
-                  className="search-icon"
-                  onClick={() => handleSearch("class")}
+      {!loading ? (
+        <Loading />
+      ) : (
+        <>
+          <ToastContainer />
+          <Header backColor="#FFFFFF" page="search" />
+          <section className="all-teachers">
+            <div className="d-flex justify-content-between">
+              <div className="left">
+                <h3 className="heading">Search</h3>
+                <div className="search-inn mb-3">
+                  <div className="class">
+                    <input
+                      type="text"
+                      className="form-control mb-2"
+                      placeholder="Class"
+                      name="classVal"
+                      id="classVal"
+                      value={filterObject?.classVal}
+                      onChange={handleClaasSubject}
+                    />
+                    <BsSearch
+                      className="search-icon"
+                      onClick={() => handleSearch("class")}
+                    />
+                  </div>
+                  <div className="subject">
+                    <input
+                      type="text"
+                      className="form-control mb-2"
+                      placeholder="Subject"
+                      name="subject"
+                      id="subject"
+                      onInput={handleClaasSubject}
+                      value={filterObject?.subject}
+                    />
+                    <BsSearch
+                      className="search-icon"
+                      onClick={() => handleSearch("subject")}
+                    />
+                  </div>
+                </div>
+                <Filters
+                  classVal={active}
+                  data={data}
+                  allTeachersData={allTeachersData}
+                  handleFilterBottom={handleFilterBottom}
+                  finalFilterData={finalFilterData}
                 />
               </div>
-              <div className="subject">
-                <input
-                  type="text"
-                  className="form-control mb-2"
-                  placeholder="Subject"
-                  name="subject"
-                  id="subject"
-                  onInput={handleClaasSubject}
-                  value={filterObject?.subject}
-                />
-                <BsSearch
-                  className="search-icon"
-                  onClick={() => handleSearch("subject")}
-                />
-              </div>
-            </div>
-            <Filters
-              classVal={active}
-              data={data}
-              allTeachersData={allTeachersData}
-              handleFilterBottom={handleFilterBottom}
-              finalFilterData={finalFilterData}
-            />
-          </div>
-          <div className="right pl-5">
-            {/* <p className="note-search">
+              <div className="right pl-5">
+                {/* <p className="note-search">
               Note: You can get upto 3 teachers details
             </p> */}
-            {typeof stateTeachers.allteachers[0] === "string"
-              ? "No data found"
-              : allTeachersData.map((item, index) => {
-                  return (
-                    <Card
-                      key={index}
-                      detail={item}
-                      handleShow={handleShowEmail}
-                    />
-                  );
-                })}
-          </div>
-        </div>
-        <div className="all-filters d-flex flex-row align-items-center justify-content-center">
-          <Link
-            className="home inn-box d-flex flex-column align-items-center justify-content-center"
-            id="home"
-            to="/"
-          >
-            <AiOutlineHome
-              className="dis-icon icon"
-              style={{ color: "#fff" }}
-            />
-            <span className="title">Home</span>
-          </Link>
-          <div
-            className="distance inn-box d-flex flex-column align-items-center justify-content-center"
-            id="distance"
-            onClick={() => handleFilterBottom("distance")}
-          >
-            <MdSocialDistance className="dis-icon icon" />
-            <span className="title">Distance</span>
-          </div>
-          <div
-            className="fees inn-box d-flex flex-column align-items-center justify-content-center"
-            id="fees"
-            onClick={() => handleFilterBottom("fees")}
-          >
-            <BsCurrencyRupee className="fees-icon icon" />
-            <span className="title">Fees</span>
-          </div>
-          <div
-            className="time inn-box d-flex flex-column align-items-center justify-content-center"
-            id="time"
-            onClick={() => handleFilterBottom("time")}
-          >
-            <BiTimeFive className="time-icon icon" />
-            <span className="title">Time</span>
-          </div>
-          <div className="filter-block inn-box d-flex flex-column align-items-center justify-content-center active-icon">
-            <BiFilterAlt className="filter-icon icon" />
-            <span className="title">Filters</span>
-          </div>
-        </div>
-      </section>
-      <Modal show={showEmail} onHide={handleCloseEmail}>
-        <form
-          className="email-form"
-          onSubmit={(e) => {
-            e.preventDefault();
-            handleStudentEmail();
-          }}
-        >
-          <Modal.Header>
-            <Modal.Title>Get Teacher Details</Modal.Title>
-          </Modal.Header>
-          <Modal.Body>
-            <div className="form-group">
-              <input
-                className="form-control mb-2"
-                type="email"
-                placeholder="Email Address"
-                autoFocus
-                required
-                onInput={handleChangeOfEmail}
-              />
+                {typeof stateTeachers.allteachers[0] === "string"
+                  ? "No data found"
+                  : allTeachersData.map((item, index) => {
+                      return (
+                        <Card
+                          key={index}
+                          detail={item}
+                          handleShow={handleShowEmail}
+                        />
+                      );
+                    })}
+              </div>
             </div>
-          </Modal.Body>
-          <Modal.Footer>
-            <Button variant="gray" onClick={handleCloseEmail}>
-              Close
-            </Button>
-            <input
-              type="submit"
-              className="btn"
-              value="Submit"
-              style={{ backgroundColor: "#FBD37A" }}
-            />
-          </Modal.Footer>
-        </form>
-      </Modal>
+            <div className="all-filters d-flex flex-row align-items-center justify-content-center">
+              <Link
+                className="home inn-box d-flex flex-column align-items-center justify-content-center"
+                id="home"
+                to="/"
+              >
+                <AiOutlineHome
+                  className="dis-icon icon"
+                  style={{ color: "#fff" }}
+                />
+                <span className="title">Home</span>
+              </Link>
+              <div
+                className="distance inn-box d-flex flex-column align-items-center justify-content-center"
+                id="distance"
+                onClick={() => handleFilterBottom("distance")}
+              >
+                <MdSocialDistance className="dis-icon icon" />
+                <span className="title">Distance</span>
+              </div>
+              <div
+                className="fees inn-box d-flex flex-column align-items-center justify-content-center"
+                id="fees"
+                onClick={() => handleFilterBottom("fees")}
+              >
+                <BsCurrencyRupee className="fees-icon icon" />
+                <span className="title">Fees</span>
+              </div>
+              <div
+                className="time inn-box d-flex flex-column align-items-center justify-content-center"
+                id="time"
+                onClick={() => handleFilterBottom("time")}
+              >
+                <BiTimeFive className="time-icon icon" />
+                <span className="title">Time</span>
+              </div>
+              <div className="filter-block inn-box d-flex flex-column align-items-center justify-content-center active-icon">
+                <BiFilterAlt className="filter-icon icon" />
+                <span className="title">Filters</span>
+              </div>
+            </div>
+          </section>
+          <Modal show={showEmail} onHide={handleCloseEmail}>
+            <form
+              className="email-form"
+              onSubmit={(e) => {
+                e.preventDefault();
+                handleStudentEmail();
+              }}
+            >
+              <Modal.Header>
+                <Modal.Title>Get Teacher Details</Modal.Title>
+              </Modal.Header>
+              <Modal.Body>
+                <div className="form-group">
+                  <input
+                    className="form-control mb-2"
+                    type="email"
+                    placeholder="Email Address"
+                    autoFocus
+                    required
+                    onInput={handleChangeOfEmail}
+                  />
+                </div>
+              </Modal.Body>
+              <Modal.Footer>
+                <Button variant="gray" onClick={handleCloseEmail}>
+                  Close
+                </Button>
+                <input
+                  type="submit"
+                  className="btn"
+                  value="Submit"
+                  style={{ backgroundColor: "#FBD37A" }}
+                />
+              </Modal.Footer>
+            </form>
+          </Modal>
 
-      <Modal show={showStudent} onHide={handleCloseStudent}>
-        <form
-          className="student-form"
-          onSubmit={(e) => {
-            e.preventDefault();
-            handleStudentForm();
-          }}
-        >
-          <Modal.Header>
-            <Modal.Title>Student Details</Modal.Title>
-          </Modal.Header>
-          <Modal.Body>
-            <div className="form-group">
-              <input
-                className="form-control mb-2"
-                type="text"
-                placeholder="First Name"
-                name="firstName"
-                required
-                onInput={handleStudentRegister}
-              />
-              <input
-                className="form-control mb-2"
-                type="text"
-                placeholder="Last Name"
-                required
-                name="lastName"
-                onInput={handleStudentRegister}
-              />
-              <input
-                className="form-control mb-2"
-                type="email"
-                placeholder="Email Address"
-                required
-                name="email"
-                onInput={handleStudentRegister}
-              />
-              <input
-                className="form-control mb-2"
-                type="text"
-                maxLength={10}
-                minLength={10}
-                placeholder="Contact"
-                required
-                name="phone"
-                pattern="[0-9]+"
-                onInput={handleStudentRegister}
-              />
-              <input
-                className="form-control mb-2"
-                type="text"
-                placeholder="City"
-                name="city"
-                required
-                onInput={handleStudentRegister}
-              />
-              <input
-                className="form-control mb-2"
-                type="text"
-                placeholder="School (Optional)"
-                name="school"
-                onInput={handleStudentRegister}
-              />
-            </div>
-          </Modal.Body>
-          <Modal.Footer>
-            <Button variant="gray" onClick={handleCloseStudent}>
-              Close
-            </Button>
-            <input
-              type="submit"
-              className="btn"
-              value="Submit"
-              style={{ backgroundColor: "#FBD37A" }}
-            />
-          </Modal.Footer>
-        </form>
-      </Modal>
-      <Modal show={showMessage} onHide={handleCloseMessage}>
-        <Modal.Header>
-          <Modal.Title>Get Teacher Details</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          Your email is already registered, press ok to get teacher details.
-        </Modal.Body>
-        <Modal.Footer>
-          <Button vvariant="gray" onClick={handleCloseMessage}>
-            Close
-          </Button>
-          <Button
-            variant="primary"
-            onClick={handleMessage}
-            style={{ backgroundColor: "#FBD37A" }}
-          >
-            Ok
-          </Button>
-        </Modal.Footer>
-      </Modal>
+          <Modal show={showStudent} onHide={handleCloseStudent}>
+            <form
+              className="student-form"
+              onSubmit={(e) => {
+                e.preventDefault();
+                handleStudentForm();
+              }}
+            >
+              <Modal.Header>
+                <Modal.Title>Student Details</Modal.Title>
+              </Modal.Header>
+              <Modal.Body>
+                <div className="form-group">
+                  <input
+                    className="form-control mb-2"
+                    type="text"
+                    placeholder="First Name"
+                    name="firstName"
+                    required
+                    onInput={handleStudentRegister}
+                  />
+                  <input
+                    className="form-control mb-2"
+                    type="text"
+                    placeholder="Last Name"
+                    required
+                    name="lastName"
+                    onInput={handleStudentRegister}
+                  />
+                  <input
+                    className="form-control mb-2"
+                    type="email"
+                    placeholder="Email Address"
+                    required
+                    name="email"
+                    onInput={handleStudentRegister}
+                  />
+                  <input
+                    className="form-control mb-2"
+                    type="text"
+                    maxLength={10}
+                    minLength={10}
+                    placeholder="Contact"
+                    required
+                    name="phone"
+                    pattern="[0-9]+"
+                    onInput={handleStudentRegister}
+                  />
+                  <input
+                    className="form-control mb-2"
+                    type="text"
+                    placeholder="City"
+                    name="city"
+                    required
+                    onInput={handleStudentRegister}
+                  />
+                  <input
+                    className="form-control mb-2"
+                    type="text"
+                    placeholder="School (Optional)"
+                    name="school"
+                    onInput={handleStudentRegister}
+                  />
+                </div>
+              </Modal.Body>
+              <Modal.Footer>
+                <Button variant="gray" onClick={handleCloseStudent}>
+                  Close
+                </Button>
+                <input
+                  type="submit"
+                  className="btn"
+                  value="Submit"
+                  style={{ backgroundColor: "#FBD37A" }}
+                />
+              </Modal.Footer>
+            </form>
+          </Modal>
+          <Modal show={showMessage} onHide={handleCloseMessage}>
+            <Modal.Header>
+              <Modal.Title>Get Teacher Details</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+              Your email is already registered, press ok to get teacher details.
+            </Modal.Body>
+            <Modal.Footer>
+              <Button vvariant="gray" onClick={handleCloseMessage}>
+                Close
+              </Button>
+              <Button
+                variant="primary"
+                onClick={handleMessage}
+                style={{ backgroundColor: "#FBD37A" }}
+              >
+                Ok
+              </Button>
+            </Modal.Footer>
+          </Modal>
+        </>
+      )}
     </>
   );
 };

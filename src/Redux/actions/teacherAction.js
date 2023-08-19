@@ -15,6 +15,12 @@ export const getTeacherDetail = (data) => {
   };
 };
 
+export const setAllTeacherDetail = () => {
+  return {
+    type: ActionTypes.SET_ALL_TEACHER_DETAIL,
+  };
+};
+
 export const regitrationWithBatchDetail = (data) => {
   return async (dispatch) => {
     try {

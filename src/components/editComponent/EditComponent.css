@@ -1,32 +1,22 @@
 @import url(../../utils/commen.scss);
-.active .custom-select {
-  padding-left: 0;
-  pointer-events: auto !important;
-  padding-left: 0.7rem !important;
-  background: rgba(0, 0, 0, 0.06) url("data:image/svg+xml,%3csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%274%27 height=%275%27 viewBox=%270 0 4 5%27%3e%3cpath fill=%27%23343a40%27 d=%27M2 0L0 2h4zm0 5L0 3h4z%27/%3e%3c/svg%3e") right 0.75rem center/8px 10px no-repeat !important;
-}
-.active .form-control {
-  padding-left: 0 !important;
-  background: rgba(0, 0, 0, 0.06) !important;
-  pointer-events: auto !important;
-  padding: 1.3rem 0.7rem !important;
-}
-
-.edit-compo .custom-select {
-  pointer-events: none;
-  padding-left: 0;
-  background: none;
-}
-.edit-compo .custom-select:focus {
-  box-shadow: none;
-}
 .edit-compo .scholarship {
   width: 8rem;
 }
 .edit-compo .size {
   width: 9rem;
 }
-
+.edit-compo .custom-select {
+  padding-left: 0;
+  pointer-events: auto !important;
+  padding-left: 0.7rem !important;
+  background: rgba(0, 0, 0, 0.06) url("data:image/svg+xml,%3csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%274%27 height=%275%27 viewBox=%270 0 4 5%27%3e%3cpath fill=%27%23343a40%27 d=%27M2 0L0 2h4zm0 5L0 3h4z%27/%3e%3c/svg%3e") right 0.75rem center/8px 10px no-repeat !important;
+}
+.edit-compo .form-control {
+  padding-left: 0 !important;
+  background: rgba(0, 0, 0, 0.06) !important;
+  pointer-events: auto !important;
+  padding: 1.3rem 0.7rem !important;
+}
 .edit-compo .form-control {
   pointer-events: none;
   padding-left: 0;
@@ -86,20 +76,4 @@
   border-color: #FBD37A !important;
   background: #FFDE95 !important;
   color: #000 !important;
-}
-
-@media screen and (max-width: 575.98px) {
-  .active .custom-select {
-    border: none;
-    padding-right: 1.5rem !important;
-  }
-  .active .form-control {
-    padding: 1.3rem 0.7rem 0.7 0rem;
-  }
-  .edit-compo .custom-select {
-    padding-right: 0;
-  }
-  .edit-compo .form-control {
-    padding-right: 0;
-  }
 }/*# sourceMappingURL=EditComponent.css.map */

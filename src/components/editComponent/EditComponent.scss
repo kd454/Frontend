@@ -1,18 +1,7 @@
 @import url(../../utils/commen.scss);
 
 
-.custom-select {
-    padding-left: 0;
-    pointer-events: auto !important;
-    padding-left: 0.7rem !important;
-    background:rgba(0,0,0,0.06) url("data:image/svg+xml,%3csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%274%27 height=%275%27 viewBox=%270 0 4 5%27%3e%3cpath fill=%27%23343a40%27 d=%27M2 0L0 2h4zm0 5L0 3h4z%27/%3e%3c/svg%3e") right .75rem center/8px 10px no-repeat !important;
-}
-.form-control {
-    padding-left: 0 !important;
-    background: rgba(0,0,0,0.06) !important;
-    pointer-events: auto !important;
-    padding: 1.3rem 0.7rem !important;
-}
+
  
 
 .edit-compo {
@@ -22,9 +11,18 @@
     .size{
         width: 9rem;
     }
-}
-
-.edit-compo{
+    .custom-select {
+        padding-left: 0;
+        pointer-events: auto !important;
+        padding-left: 0.7rem !important;
+        background:rgba(0,0,0,0.06) url("data:image/svg+xml,%3csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%274%27 height=%275%27 viewBox=%270 0 4 5%27%3e%3cpath fill=%27%23343a40%27 d=%27M2 0L0 2h4zm0 5L0 3h4z%27/%3e%3c/svg%3e") right .75rem center/8px 10px no-repeat !important;
+    }
+    .form-control {
+        padding-left: 0 !important;
+        background: rgba(0,0,0,0.06) !important;
+        pointer-events: auto !important;
+        padding: 1.3rem 0.7rem !important;
+    }
     .form-control {
         pointer-events: none;
         padding-left: 0;

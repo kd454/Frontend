@@ -27,6 +27,7 @@ const Filters = ({ classVal, finalFilterData }) => {
     distance: [],
     gender: [],
     batch_detail: [],
+    boards: [],
   });
 
   useEffect(() => {
@@ -45,6 +46,7 @@ const Filters = ({ classVal, finalFilterData }) => {
     filterObject.distance,
     filterObject.gender,
     filterObject.batch_detail,
+    filterObject.boards,
   ]);
 
   useEffect(() => {
@@ -81,7 +83,7 @@ const Filters = ({ classVal, finalFilterData }) => {
           ["gender"]: data,
         });
       }
-    } else {
+    } else if (list === "batch") {
       if (e.target.checked) {
         setFilterObject({
           ...filterObject,
@@ -94,6 +96,23 @@ const Filters = ({ classVal, finalFilterData }) => {
         setFilterObject({
           ...filterObject,
           ["batch_detail"]: data,
+        });
+      }
+    } else {
+      if (e.target.checked) {
+        setFilterObject({
+          ...filterObject,
+          ["boards"]: [...filterObject.boards, e.target.value],
+        });
+      } else {
+        console.log(filterObject);
+        const data = filterObject.boards.filter(
+          (item) => item !== e.target.value
+        );
+        console.log(data);
+        setFilterObject({
+          ...filterObject,
+          ["boards"]: data,
         });
       }
     }
@@ -165,6 +184,50 @@ const Filters = ({ classVal, finalFilterData }) => {
               />
               <label className="form-check-label" htmlFor="more">
                 More then 30
+              </label>
+            </div>
+          </div>
+        </div>
+        <div className="modes mb-3">
+          <h6 className="title-mode">Boards</h6>
+          <div className="all-radios d-flex flex-row flex-wrap">
+            <div className="form-check">
+              <input
+                className="form-check-input gender-check"
+                type="checkbox"
+                value="CBSE"
+                id="CBSE"
+                name="CBSE"
+                onChange={(e) => handleCheckItems(e, "boards")}
+              />
+              <label className="form-check-label mr-3" htmlFor="CBSE">
+                CBSE
+              </label>
+            </div>
+            <div className="form-check">
+              <input
+                className="form-check-input gender-check"
+                type="checkbox"
+                value="ICSE"
+                id="ICSE"
+                name="ICSE"
+                onChange={(e) => handleCheckItems(e, "boards")}
+              />
+              <label className="form-check-label mr-3" htmlFor="ICSE">
+                ICSE
+              </label>
+            </div>
+            <div className="form-check">
+              <input
+                className="form-check-input gender-check"
+                type="checkbox"
+                value="IGCSE"
+                id="IGCSE"
+                name="IGCSE"
+                onChange={(e) => handleCheckItems(e, "boards")}
+              />
+              <label className="form-check-label" htmlFor="IGCSE">
+                IGCSE
               </label>
             </div>
           </div>

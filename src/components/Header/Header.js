@@ -9,10 +9,8 @@ import Logo from "../../assets/images/logo.svg";
 import { useDispatch, useSelector } from "react-redux";
 import {
   getTeachersDetailById,
-  isEmailorPhoneAlreadyexist,
   setEmailState,
 } from "../../Redux/actions/teacherAction";
-import { studentHistory } from "../../Redux/actions/studentAction";
 import { setLogin } from "../../Redux/actions/loginAction";
 
 const Header = ({ backColor, page }) => {

@@ -20,12 +20,13 @@ const teacherReducer = (state = initialState, action) => {
       if (action.payload.length == 0) {
         newArr = action.payload;
         newArr.push("Data not found");
-        console.log(newArr);
         return { ...state, allteachers: newArr };
       } else {
-        return { ...state, allteachers: action.payload };
+        const sortedData = sortingOfData(action.payload);
+        return { ...state, allteachers: sortedData };
       }
-
+    case ActionTypes.SET_ALL_TEACHER_DETAIL:
+      return { ...state, allteachers: [] };
     case ActionTypes.REGISTER_DATA:
       return { ...state, teacher: action.payload };
     case ActionTypes.SET_TEACHER_REGISTRAION:
@@ -55,4 +56,23 @@ const teacherReducer = (state = initialState, action) => {
   }
 };
 
+const sortingOfData = (data) => {
+  console.log(data);
+  let mArr = [];
+  let kmArr = [];
+  data?.forEach((item) => {
+    if (item.distance.split(" ")[1] === "m") {
+      mArr.push(item);
+    } else {
+      kmArr.push(item);
+    }
+  });
+  mArr.sort((a, b) => {
+    return a.distance.split(" ")[0] - b.distance.split(" ")[0];
+  });
+  kmArr.sort((a, b) => {
+    return a.distance.split(" ")[0] - b.distance.split(" ")[0];
+  });
+  return [...mArr, ...kmArr];
+};
 export default teacherReducer;
