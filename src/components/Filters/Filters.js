@@ -3,13 +3,14 @@ import "./Filters.css";
 import Range from "../Range/Range";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useSearchParams } from "react-router-dom";
+import { AiOutlineClose } from "react-icons/ai";
 
 import {
   setFilterData,
   setFilterObjectRedux,
 } from "../../Redux/actions/teacherAction";
 
-const Filters = ({ classVal, finalFilterData }) => {
+const Filters = ({ classVal, handleFilterBottom, activeClassName }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [filterDataIn, setFilterDataIn] = useState([]);
@@ -122,6 +123,12 @@ const Filters = ({ classVal, finalFilterData }) => {
   return (
     <>
       <div className={classVal ? "filter active" : "filter"}>
+        <span
+          className="position-absolute icon-close d-flex justify-content-end"
+          onClick={() => handleFilterBottom(activeClassName)}
+        >
+          <AiOutlineClose />
+        </span>
         <h3 className="heading">Filters</h3>
         <Range
           min={100}
@@ -188,7 +195,7 @@ const Filters = ({ classVal, finalFilterData }) => {
             </div>
           </div>
         </div>
-        <div className="modes mb-3">
+        {/* <div className="modes mb-3">
           <h6 className="title-mode">Boards</h6>
           <div className="all-radios d-flex flex-row flex-wrap">
             <div className="form-check">
@@ -231,7 +238,7 @@ const Filters = ({ classVal, finalFilterData }) => {
               </label>
             </div>
           </div>
-        </div>
+        </div> */}
         <div className="row justify-content-start">
           <div className="modes flex-grow-1">
             <h6 className="title-mode">Modes</h6>

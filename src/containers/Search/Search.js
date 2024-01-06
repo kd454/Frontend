@@ -31,6 +31,7 @@ const Search = () => {
   const [searchParams] = useSearchParams();
   const [active, setActive] = useState(false);
   const [loading, setLoading] = useState(true);
+  const [activeClassName, setActiveClassName] = useState("");
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const stateTeachers = useSelector((state) => state.teacherRedu);
@@ -137,6 +138,7 @@ const Search = () => {
     if (document.getElementById(text).classList.contains("active")) {
       document.getElementById(text).classList.remove("active");
       setActive(false);
+      setActiveClassName("");
       document.body.style.overflowY = "scroll";
       document.querySelector(".search-inn").style.display = "flex !important";
     } else {
@@ -146,6 +148,7 @@ const Search = () => {
         document.querySelector(".search-inn").style.display = "flex !important";
       }
       setActive(true);
+      setActiveClassName(text);
       document.body.style.overflowY = "hidden";
       document.getElementById(text).classList.add("active");
     }
@@ -377,10 +380,8 @@ const Search = () => {
                 </div>
                 <Filters
                   classVal={active}
-                  data={data}
-                  allTeachersData={allTeachersData}
                   handleFilterBottom={handleFilterBottom}
-                  finalFilterData={finalFilterData}
+                  activeClassName={activeClassName}
                 />
               </div>
               <div className="right pl-5">

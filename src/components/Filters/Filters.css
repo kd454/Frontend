@@ -24,4 +24,8 @@
     padding: 1rem;
     overflow-y: scroll;
   }
+  .filter.active .icon-close {
+    width: 92%;
+    font-size: 1.5rem;
+  }
 }/*# sourceMappingURL=Filters.css.map */
