@@ -28,13 +28,35 @@ const SearchInput = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (data.location && data.mode) {
+    if (data.location && data.mode && data.classVal && data.subject) {
       navigate({
         pathname: "/search",
         search: `?location=${data.location}&class=${data.classVal}&subject=${data.subject}&mode=${data.mode}`,
       });
     } else if (!data.mode) {
       toast.error("Select mode for better result", {
+        position: "top-center",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+    } else if (!data.subject) {
+      toast.error("Subject is required", {
+        position: "top-center",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+    } else if (!data.classVal) {
+      toast.error("Class is required", {
         position: "top-center",
         autoClose: 2000,
         hideProgressBar: false,
